@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一拍就知道</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
+</head>
+<body>
+  <header>
+    <h1>📸 一拍就知道</h1>
+    <p class="sub">AI 即時辨識回收物，告訴你丟哪一類</p>
+    <div class="toolbar">
+      <label>縣市
+        <select id="county"></select>
+      </label>
+      <label class="switch"><input type="checkbox" id="voice" checked> 🔊 語音</label>
+    </div>
+    <nav>
+      <button class="tab active" data-page="scan">辨識</button>
+      <button class="tab" data-page="dash">常錯物品儀表板</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== 辨識頁 ===== -->
+    <section id="page-scan" class="page">
+      <div class="cam-box">
+        <video id="video" playsinline muted></video>
+        <div id="status" class="cam-status">模型載入中…</div>
+        <div class="live"><span id="live-label">－</span><span id="live-conf"></span></div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-start" class="primary">開啟鏡頭</button>
+        <button id="btn-snap" class="primary big" disabled>📸 拍一下</button>
+        <button id="btn-flip" class="ghost" hidden>🔄 換鏡頭</button>
+      </div>
+
+      <div id="result" class="result" hidden>
+        <div class="result-head">
+          <span id="r-icon" class="r-icon"></span>
+          <div>
+            <div id="r-name" class="r-name"></div>
+            <div id="r-conf" class="r-conf"></div>
+          </div>
+        </div>
+        <div class="r-row"><b>丟哪裡</b><span id="r-where"></span></div>
+        <div class="r-row"><b>先這樣做</b><span id="r-prep"></span></div>
+        <div id="r-source" class="r-source"></div>
+
+        <div class="feedback" id="fb-ask">
+          <span>AI 說得對嗎？</span>
+          <button id="btn-right" class="ok">✅ 對</button>
+          <button id="btn-wrong" class="bad">❌ 不對</button>
+        </div>
+        <div class="feedback-choose" id="fb-choose" hidden>
+          <p>那它其實是哪一類？</p>
+          <div id="fb-options" class="fb-options"></div>
+        </div>
+        <div id="fb-thanks" class="thanks" hidden>謝謝回報！這筆資料會用來重新訓練 AI。</div>
+      </div>
+
+      <div id="lowconf" class="lowconf" hidden>
+        🤔 看不太清楚（信心度 <span id="lc-conf"></span>）<br>請換個角度、靠近一點、背景單純一點，再拍一次。
+      </div>
+    </section>
+
+    <!-- ===== 儀表板頁 ===== -->
+    <section id="page-dash" class="page" hidden>
+      <div class="stats">
+        <div class="stat"><div class="stat-num" id="s-total">0</div><div>回報總數</div></div>
+        <div class="stat"><div class="stat-num" id="s-acc">－</div><div>使用者回報正確率</div></div>
+        <div class="stat"><div class="stat-num" id="s-wrong">0</div><div>認錯次數</div></div>
+      </div>
+      <p id="dash-source" class="muted"></p>
+
+      <h2>最常被認錯的物品</h2>
+      <p class="muted">依「正確類別」統計 AI 認錯的次數</p>
+      <div id="chart" class="chart"></div>
+
+      <h2>AI 最常搞混的組合</h2>
+      <table class="tbl">
+        <thead><tr><th>AI 認成</th><th>其實是</th><th>次數</th></tr></thead>
+        <tbody id="pairs"></tbody>
+      </table>
+
+      <h2>認錯的照片（重新訓練用）</h2>
+      <p class="muted">依正確類別分組。點照片可下載，再上傳到 Teachable Machine 對應的類別重新訓練。（只有存在這台裝置上的回報才有照片）</p>
+      <div id="gallery"></div>
+
+      <div class="actions">
+        <button id="btn-csv" class="ghost">⬇️ 下載回報紀錄 CSV</button>
+        <button id="btn-clear" class="ghost danger">🗑 清除這台裝置的紀錄</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>影像只在你的瀏覽器裡辨識，不會上傳。六七團隊 · 臺北市立內湖高級中學</footer>
+
+  <canvas id="crop" width="224" height="224" hidden></canvas>
+
+  <!-- AI 函式庫（已放在 lib 資料夾，不需連外網 CDN） -->
+  <script src="lib/tf-core.min.js"></script>
+  <script src="lib/tf-backend-cpu.min.js"></script>
+  <script src="lib/tf-tflite.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

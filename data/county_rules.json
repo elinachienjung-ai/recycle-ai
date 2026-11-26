@@ -1,0 +1,1240 @@
+{
+ "說明": "全國通則依廢棄物清理法公告應回收物（收集時間由各縣市執行機關公告，見 law）；status=縣市已查證 表示該筆有該縣市環保局來源，status=全國通則（待查證）表示尚未查到該縣市特別規定。查證日期 2026-11-26。",
+ "sources": {
+  "tp95": "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+  "tp14": "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+  "ntpc15": "https://recycle.ntpc.gov.tw/Article/Index/category15",
+  "ntpc42": "https://recycle.ntpc.gov.tw/Article/Index/category42",
+  "kh": "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf",
+  "law": "https://www.laws.taipei.gov.tw/lawatt/Law/A040300061024800-20200609-5000-001.pdf",
+  "ey": "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+ },
+ "rules": {
+  "基隆市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "臺北市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：廢塑膠（立體類）",
+    "前處理": "先倒空容器內殘餘物；每週二、四、六交給清潔隊回收車",
+    "status": "縣市已查證",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：廢塑膠（立體類）",
+    "前處理": "每週二、四、六交給清潔隊回收車",
+    "status": "縣市已查證",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "新北市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "縣市已查證",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "縣市已查證",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "縣市已查證",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "縣市已查證",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "桃園市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "新竹市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "新竹縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "苗栗縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "臺中市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "彰化縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "南投縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "雲林縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "嘉義市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "嘉義縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "臺南市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "高雄市": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "沖洗或擦拭後與紙類分開回收",
+    "status": "縣市已查證",
+    "來源": [
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "鋰電池、行動電源交給資源回收車",
+    "status": "縣市已查證",
+    "來源": [
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   }
+  },
+  "屏東縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "宜蘭縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "花蓮縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "臺東縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "澎湖縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "金門縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  },
+  "連江縣": {
+   "寶特瓶": {
+    "丟哪裡": "資源回收：塑膠容器類",
+    "前處理": "先倒空容器內殘餘物再交付回收",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙容器": {
+    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
+    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+    ]
+   },
+   "玻璃": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "塑膠餐盒": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "電池": {
+    "丟哪裡": "廢乾電池（不可丟一般垃圾）",
+    "前處理": "與其他回收物分開，單獨交給資源回收車，或送量販店、超市、超商、藥妝店回收點；有起火風險",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15",
+     "https://recycle.ntpc.gov.tw/Article/Index/category42",
+     "https://www.ey.gov.tw/state/4AC21DC94B8E19A8/7bcb93b5-4d17-4888-a359-d77233b0346f"
+    ]
+   }
+  }
+ }
+}
