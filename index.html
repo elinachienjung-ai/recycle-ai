@@ -58,6 +58,7 @@
         </div>
         <div class="feedback-choose" id="fb-choose" hidden>
           <p>那它其實是哪一類？</p>
+          <p class="privacy" id="privacy-note">📷 送出後，這張小照片會存到團隊的雲端資料夾，只用來重新訓練 AI。請只拍物品，不要拍到人臉。</p>
           <div id="fb-options" class="fb-options"></div>
         </div>
         <div id="fb-thanks" class="thanks" hidden>謝謝回報！這筆資料會用來重新訓練 AI。</div>
@@ -117,6 +118,7 @@
 
       <h2>認錯的照片（重新訓練用）</h2>
       <p class="muted">依正確類別分組。按「下載重訓照片 ZIP」會得到每個類別一個資料夾，直接上傳到 Teachable Machine 對應的類別重新訓練。（照片只存在這台裝置）</p>
+      <p id="folder-link" class="muted" hidden></p>
       <div id="gallery"></div>
 
       <div class="actions">
@@ -128,7 +130,7 @@
     </section>
   </main>
 
-  <footer>影像只在你的瀏覽器裡辨識，不會上傳。六七團隊 · 臺北市立內湖高級中學</footer>
+  <footer>影像在你的瀏覽器裡辨識，不會上傳；只有按「❌ 不對」回報時，才會送出那一張小照片供重新訓練。六七團隊 · 臺北市立內湖高級中學</footer>
 
   <canvas id="crop" width="224" height="224" hidden></canvas>
 

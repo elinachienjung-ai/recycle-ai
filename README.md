@@ -9,6 +9,7 @@
 | `index.html` | 網頁本體 |
 | `style.css` | 外觀 |
 | `app.js` | 主程式（鏡頭、辨識、語音、回報、儀表板） |
+| `apps-script.gs` | 貼到 Google Apps Script 的雲端接收程式（見第 4 節） |
 | `config.js` | **設定檔**：信心度門檻、類別名稱與圖示、Google 試算表網址 |
 | `model/model.tflite`、`model/labels.txt` | Teachable Machine 訓練出的模型 |
 | `data/county_rules.json` | 22 縣市 × 7 個回收類別的規則 |
@@ -38,40 +39,36 @@
 
 之後要更新（例如換新模型）：在 repository 裡進入 `model` 資料夾 →「Add file」→「Upload files」，上傳新的 `model.tflite` 和 `labels.txt` 覆蓋即可，約 1 分鐘後網站就更新。
 
-## 4.（選做）把「不對」回報存到 Google 試算表
+## 4. 讓所有使用者的資料存在同一個地方（Google 試算表＋雲端硬碟）
 
-沒設定時，回報只存在那台裝置的瀏覽器裡（儀表板看得到、可下載 CSV）。設定後，所有裝置的回報都會集中到同一份試算表，儀表板也會讀試算表。
+沒設定時，資料只存在每台裝置自己的瀏覽器。設定後，**不管誰、用哪台裝置**，資料都會集中到同一份試算表，儀表板也會顯示所有人的統計：
 
-1. 開一份新的 Google 試算表，命名例如「一拍就知道回報」。
-2. 選單「擴充功能」→「Apps Script」，把裡面的程式全部刪掉，貼上：
+- 「回報」工作表：每次按 ✅ 對／❌ 不對
+- 「辨識紀錄」工作表：每次按「拍一下」的結果
+- 雲端硬碟「一拍就知道_重訓照片」資料夾：按 ❌ 不對 時那張小照片，自動依「正確類別」分資料夾放好
 
-```javascript
-function doPost(e) {
-  const d = JSON.parse(e.postData.contents);
-  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  if (sh.getLastRow() === 0) sh.appendRow(["time", "county", "predicted", "correct", "isCorrect", "confidence"]);
-  sh.appendRow([d.time, d.county, d.predicted, d.correct, d.isCorrect, d.confidence]);
-  return ContentService.createTextOutput("ok");
-}
+沒網路時會先存在裝置裡，有網路後自動補傳。
 
-function doGet() {
-  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-  const rows = sh.getDataRange().getValues();
-  const head = rows.shift() || [];
-  const list = rows.map(r => Object.fromEntries(head.map((h, i) => [h, r[i]])));
-  return ContentService.createTextOutput(JSON.stringify(list)).setMimeType(ContentService.MimeType.JSON);
-}
-```
+**設定步驟（用團隊的 Google 帳號，約 10 分鐘）**
 
-3. 按「部署」→「新增部署作業」→ 齒輪選「網頁應用程式」。
+1. 到 https://sheets.new 開一份新的 Google 試算表，命名「一拍就知道資料」。
+2. 選單「擴充功能」→「Apps Script」。
+3. 把編輯器裡原本的程式全部刪掉，打開這個網站資料夾裡的 **`apps-script.gs`**，全部複製貼上，按 💾 儲存。
+4. 右上角「部署」→「新增部署作業」→ 左邊齒輪選「網頁應用程式」：
    - 執行身分：**我**
    - 誰可以存取：**所有人**
-4. 按「部署」，第一次會要求授權（選自己的帳號 →「進階」→「前往…（不安全）」→ 允許）。
-5. 複製「網頁應用程式網址」（以 `/exec` 結尾），貼到 `config.js` 的 `SHEET_URL: ""` 引號中間，重新上傳 `config.js`。
+5. 按「部署」。第一次會要求授權：選自己的帳號 →「進階」→「前往（專案名稱）（不安全）」→「允許」（因為要寫入試算表和建立雲端硬碟資料夾）。
+6. 複製「網頁應用程式網址」（以 `/exec` 結尾），貼到 `config.js` 的 `SHEET_URL: ""` 引號中間。
+7. （選填）第一次有人回報照片後，雲端硬碟會出現「一拍就知道_重訓照片」資料夾，把它的網址貼到 `config.js` 的 `PHOTO_FOLDER_URL`，儀表板會顯示連結。
+8. 把改好的 `config.js` 重新上傳到 GitHub（或傳給 Claude 幫你改）。
+
+**之後如果修改了 `apps-script.gs`**：要到「部署」→「管理部署作業」→ ✏️ 編輯 → 版本選「新版本」→「部署」，網址不變。
+
+**隱私**：辨識本身都在瀏覽器裡完成，畫面不會上傳。只有使用者按「❌ 不對」並選了正確類別時，才會送出那一張 160×160 的小照片，畫面上會提醒「請只拍物品，不要拍到人臉」。如果不想收照片，把 `config.js` 的 `UPLOAD_PHOTOS` 改成 `false`。
 
 ## 5. 用回報資料重新訓練模型
 
-1. 儀表板最下方按「📦 下載重訓照片 ZIP」，解壓後每個類別一個資料夾（也可以點單張照片下載）。
+1. 有設定雲端時：到雲端硬碟「一拍就知道_重訓照片」資料夾，下載各類別資料夾。沒設定時：儀表板最下方按「📦 下載重訓照片 ZIP」（只有這台裝置的照片）。
 2. 回到 Teachable Machine 專案，把照片上傳到**正確的類別**，再按「Train Model」。
 3. 匯出：「Export Model」→「TensorFlow Lite」→「Quantized」→ 下載，把新的 `model.tflite`、`labels.txt` 換掉網站 `model/` 裡的檔案。
    - 如果類別名稱改了，記得同步修改 `config.js` 的 `CLASSES`。
@@ -94,4 +91,4 @@ function doGet() {
 - 數字卡：辨識次數、使用者回報數、回報正確率、沒把握／沒放東西的比例。
 - 圖表：各類別正確率、最常被認錯的物品、AI 認錯對照表（混淆矩陣）、最常搞混的組合、每天辨識次數。
 - 「🧪 顯示示範資料」：給簡報或影片展示儀表板用，是電腦隨機產生的假資料，畫面上方會一直顯示紅色提醒。**不能當成真實測試結果寫進作品說明書。**
-- 辨識次數只記在每台裝置的瀏覽器裡；有設定 Google 試算表時，回報會集中到試算表。
+- 有設定 Google 試算表時，儀表板顯示所有使用者的資料；沒設定時只顯示這台裝置的。

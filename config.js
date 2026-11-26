@@ -10,8 +10,15 @@ const CONFIG = {
   DEFAULT_COUNTY: "臺北市",
 
   // Google 試算表回報網址（Apps Script 部署後的網址，以 /exec 結尾）
+  // 填了之後，所有使用者的回報、辨識紀錄、認錯照片都會存到同一份試算表和雲端硬碟。
   // 空字串 = 只存在這台裝置的瀏覽器（localStorage）。設定方法見 README.md 第 4 節。
   SHEET_URL: "",
+
+  // 按「不對」時，是否把那張小照片（160×160）一起送到雲端硬碟給重新訓練用
+  UPLOAD_PHOTOS: true,
+
+  // （選填）雲端硬碟「一拍就知道_重訓照片」資料夾的網址，儀表板會顯示連結給團隊
+  PHOTO_FOLDER_URL: "",
 
   // 類別設定：網站會用 labels.txt 的名稱自動對應（名稱一樣、或含有 aliases 裡的字都算）
   // key：county_rules.json 裡的類別名稱；name：畫面顯示；icon：圖示；background: true 代表「沒有物品」；cup: true 會顯示飲料杯拆解卡片；say：語音要講的提醒（不講收運時間）

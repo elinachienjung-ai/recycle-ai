@@ -243,7 +243,23 @@ function logScan(top, outcome) {
   all.push({ time: new Date().toISOString(), county: $("county").value, predicted: classOf(top.label).key,
              confidence: Math.round(top.conf * 100) / 100, outcome });
   store("scans", all.slice(-3000));
+  sendToCloud({ type: "scan", ...all[all.length - 1] });
 }
+
+// ---------- 雲端（Google 試算表）：所有使用者的資料存在同一份 ----------
+// 送不出去（例如沒網路）就先放在本機「待上傳」，下次開網站或恢復網路時自動補傳
+function sendToCloud(data) {
+  if (!CONFIG.SHEET_URL) return;
+  fetch(CONFIG.SHEET_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) })
+    .catch(() => { const q = load("pending"); q.push(data); store("pending", q.slice(-500)); });
+}
+async function flushPending() {
+  if (!CONFIG.SHEET_URL || !navigator.onLine) return;
+  const q = load("pending"); if (!q.length) return;
+  store("pending", []);
+  for (const d of q) sendToCloud(d);
+}
+window.addEventListener("online", flushPending);
 
 function saveReport(correctKey) {
   const pred = lastResult;
@@ -263,11 +279,8 @@ function saveReport(correctKey) {
   for (let i = all.length - 1; i >= 0; i--) if (all[i].thumb && ++photos > 80) all[i].thumb = null;
   if (!store("reports", all)) { all.forEach((r) => (r.thumb = null)); store("reports", all); }
 
-  // 有設定 Google 試算表就同時送過去
-  if (CONFIG.SHEET_URL) {
-    fetch(CONFIG.SHEET_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(rec) })
-      .catch((e) => console.warn("送到試算表失敗", e));
-  }
+  // 送到雲端；認錯的照片也一起送（存到雲端硬碟，給重新訓練用）
+  sendToCloud({ type: "report", ...rec, photo: !rec.isCorrect && CONFIG.UPLOAD_PHOTOS ? pred.thumb : null });
   $("fb-ask").hidden = true; $("fb-choose").hidden = true; $("fb-thanks").hidden = false;
   $("fb-thanks").textContent = rec.isCorrect ? "謝謝確認！" : "謝謝回報！這筆資料會用來重新訓練 AI。";
 }
@@ -275,6 +288,7 @@ function saveReport(correctKey) {
 // 「不對」的選項：列出所有類別（不含背景和 AI 剛剛猜的那類）
 function showWrongChoices() {
   $("fb-ask").hidden = true; $("fb-choose").hidden = false;
+  $("privacy-note").hidden = !(CONFIG.SHEET_URL && CONFIG.UPLOAD_PHOTOS);
   const box = $("fb-options"); box.innerHTML = "";
   const predKey = classOf(lastResult.label).key;
   CONFIG.CLASSES.filter((c) => !c.background && c.key !== predKey).forEach((c) => {
@@ -325,8 +339,11 @@ async function loadDashboardData() {
   if (CONFIG.SHEET_URL) {
     try {
       const data = await (await fetch(CONFIG.SHEET_URL)).json();
-      $("dash-source").textContent = "資料來源：Google 試算表（所有裝置的回報）＋這台裝置的辨識次數";
-      return { list: data, local: getReports(), scans: getScans() };
+      const pending = load("pending").length;
+      $("dash-source").textContent = `資料來源：雲端（所有使用者的資料）${pending ? `・這台裝置還有 ${pending} 筆待上傳` : ""}`;
+      // 舊版接收程式只回傳回報陣列；新版回傳 { reports, scans }
+      return Array.isArray(data) ? { list: data, local: getReports(), scans: getScans() }
+                                 : { list: data.reports || [], local: getReports(), scans: data.scans || [] };
     } catch (e) { console.warn("讀取試算表失敗，改用本機資料", e); }
   }
   $("dash-source").textContent = "資料來源：這台裝置（尚未連接 Google 試算表）";
@@ -413,6 +430,8 @@ async function renderDashboard() {
     arr.map((r) => `<a href="${r.thumb}" download="${k}_${r.time.replace(/[:.]/g, "-")}.jpg" title="AI 認成 ${nameOf(r.predicted)}"><img src="${r.thumb}" alt=""></a>`).join("") +
     `</div></div>`).join("") || `<p class="muted">${demoMode ? "示範資料沒有照片" : "尚無照片"}</p>`;
   $("btn-zip").disabled = !Object.keys(groups).length;
+  $("folder-link").hidden = !CONFIG.PHOTO_FOLDER_URL || demoMode;
+  $("folder-link").innerHTML = `📁 所有使用者回報的照片都在 <a href="${esc(CONFIG.PHOTO_FOLDER_URL)}" target="_blank" rel="noopener">雲端硬碟資料夾</a>（每個類別一個資料夾）。`;
 }
 
 function downloadCSV() {
@@ -486,4 +505,5 @@ document.querySelectorAll(".tab").forEach((t) => (t.onclick = () => {
 }));
 if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => {};
 
+flushPending();
 init().catch((e) => { console.error(e); $("status").textContent = "模型載入失敗：" + e.message; });
