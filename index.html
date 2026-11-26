@@ -72,16 +72,39 @@
 
     <!-- ===== 儀表板頁 ===== -->
     <section id="page-dash" class="page" hidden>
+      <div id="demo-banner" class="demo-banner" hidden>🧪 目前顯示的是<b>示範資料</b>（電腦隨機產生，不是真實回報），只用來展示儀表板功能。</div>
+
+      <div class="filters">
+        <label>期間
+          <select id="f-range">
+            <option value="all">全部</option><option value="today">今天</option>
+            <option value="7">近 7 天</option><option value="30">近 30 天</option>
+          </select>
+        </label>
+        <label>縣市
+          <select id="f-county"><option value="all">全部縣市</option></select>
+        </label>
+      </div>
+
       <div class="stats">
-        <div class="stat"><div class="stat-num" id="s-total">0</div><div>回報總數</div></div>
-        <div class="stat"><div class="stat-num" id="s-acc">－</div><div>使用者回報正確率</div></div>
-        <div class="stat"><div class="stat-num" id="s-wrong">0</div><div>認錯次數</div></div>
+        <div class="stat"><div class="stat-num" id="s-scans">0</div><div>辨識次數</div></div>
+        <div class="stat"><div class="stat-num" id="s-total">0</div><div>使用者回報</div></div>
+        <div class="stat"><div class="stat-num" id="s-acc">－</div><div>回報正確率</div></div>
+        <div class="stat"><div class="stat-num" id="s-low">－</div><div>沒把握／沒放東西</div></div>
       </div>
       <p id="dash-source" class="muted"></p>
+
+      <h2>各類別正確率</h2>
+      <p class="muted">使用者按「✅ 對」的比例，越低代表 AI 越需要加強（由低排到高）</p>
+      <div id="chart-acc" class="chart"></div>
 
       <h2>最常被認錯的物品</h2>
       <p class="muted">依「正確類別」統計 AI 認錯的次數</p>
       <div id="chart" class="chart"></div>
+
+      <h2>AI 認錯對照表（混淆矩陣）</h2>
+      <p class="muted">每一列是物品「其實是」什麼，每一欄是 AI「認成」什麼；顏色越深代表越常搞混。對角線（灰底）是認對的次數。</p>
+      <div id="matrix" class="chart mx-wrap"></div>
 
       <h2>AI 最常搞混的組合</h2>
       <table class="tbl">
@@ -89,12 +112,17 @@
         <tbody id="pairs"></tbody>
       </table>
 
+      <h2>每天辨識次數（近 14 天）</h2>
+      <div id="chart-days" class="chart"></div>
+
       <h2>認錯的照片（重新訓練用）</h2>
-      <p class="muted">依正確類別分組。點照片可下載，再上傳到 Teachable Machine 對應的類別重新訓練。（只有存在這台裝置上的回報才有照片）</p>
+      <p class="muted">依正確類別分組。按「下載重訓照片 ZIP」會得到每個類別一個資料夾，直接上傳到 Teachable Machine 對應的類別重新訓練。（照片只存在這台裝置）</p>
       <div id="gallery"></div>
 
       <div class="actions">
+        <button id="btn-zip" class="primary">📦 下載重訓照片 ZIP</button>
         <button id="btn-csv" class="ghost">⬇️ 下載回報紀錄 CSV</button>
+        <button id="btn-demo" class="ghost">🧪 顯示示範資料（簡報用）</button>
         <button id="btn-clear" class="ghost danger">🗑 清除這台裝置的紀錄</button>
       </div>
     </section>
