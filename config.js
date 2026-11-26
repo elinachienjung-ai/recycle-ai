@@ -3,6 +3,12 @@ const CONFIG = {
   // 信心度門檻：AI 最高的機率低於這個數字，就請使用者換角度再拍（0.7 = 70%）
   THRESHOLD: 0.7,
 
+  // 自動校準信心門檻：依「AI 猜成這類時被說不對的比例」調整每一類的門檻
+  AUTO_THRESHOLD: { enabled: true, minReports: 10, min: 0.6, max: 0.95 },
+
+  // AI 沒把握時，自動把那張小照片存成「可疑樣本」，給團隊審核後重新訓練
+  SAVE_SUSPECTS: true,
+
   // 原圖和左右翻轉圖各辨識一次再平均（比較穩，建議開著）
   FLIP_AVERAGE: true,
 
@@ -14,7 +20,7 @@ const CONFIG = {
   // 空字串 = 只存在這台裝置的瀏覽器（localStorage）。設定方法見 README.md 第 4 節。
   SHEET_URL: "",
 
-  // 按「不對」時，是否把那張小照片（160×160）一起送到雲端硬碟給重新訓練用
+  // 回報或可疑樣本的小照片（160×160）是否送到雲端（給團隊審核、重新訓練）
   UPLOAD_PHOTOS: true,
 
   // （選填）雲端硬碟「一拍就知道_重訓照片」資料夾的網址，儀表板會顯示連結給團隊
@@ -32,5 +38,24 @@ const CONFIG = {
     { key: "電池",     name: "電池",       icon: "🔋", aliases: ["乾電池", "CDCD", "battery"], say: "不可以丟一般垃圾。請單獨交給資源回收車，或拿到超商、量販店回收。" },
     { key: "飲料杯",   name: "飲料杯",     icon: "🥤", aliases: ["手搖杯", "手搖", "手搖飲", "咖啡杯", "咖啡", "杯子"], cup: true },
     { key: "背景",     name: "沒有物品",   icon: "👋", aliases: ["background", "無物品", "沒有東西"], background: true },
+  ],
+
+  // 按「不對」時讓使用者選「這是什麼東西」，網站自動對應到類別（使用者不用知道該丟哪類）
+  ITEMS: [
+    { name: "寶特瓶",           icon: "🧴", key: "寶特瓶" },
+    { name: "塑膠便當盒",       icon: "🍱", key: "塑膠類" },
+    { name: "布丁盒／優格杯",   icon: "🍮", key: "塑膠類" },
+    { name: "洗髮精等塑膠瓶",   icon: "🧼", key: "塑膠類" },
+    { name: "紙箱",             icon: "📦", key: "紙類" },
+    { name: "報紙／書本",       icon: "📰", key: "紙類" },
+    { name: "鋁箔包",           icon: "🧃", key: "紙容器" },
+    { name: "牛奶紙盒",         icon: "🥛", key: "紙容器" },
+    { name: "紙便當盒",         icon: "🥡", key: "紙容器" },
+    { name: "鐵罐／鋁罐",       icon: "🥫", key: "鐵鋁罐" },
+    { name: "玻璃瓶",           icon: "🍾", key: "玻璃容器" },
+    { name: "乾電池",           icon: "🔋", key: "電池" },
+    { name: "手搖飲杯",         icon: "🧋", key: "飲料杯" },
+    { name: "咖啡杯",           icon: "☕", key: "飲料杯" },
+    { name: "都不是（一般垃圾／其他）", icon: "🚮", key: "其他" },
   ],
 };

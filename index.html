@@ -57,8 +57,8 @@
           <button id="btn-wrong" class="bad">❌ 不對</button>
         </div>
         <div class="feedback-choose" id="fb-choose" hidden>
-          <p>那它其實是哪一類？</p>
-          <p class="privacy" id="privacy-note">📷 送出後，這張小照片會存到團隊的雲端資料夾，只用來重新訓練 AI。請只拍物品，不要拍到人臉。</p>
+          <p>那它其實是什麼東西？點一下最像的</p>
+          <p class="privacy" id="privacy-note">📷 送出後，這張小照片會由團隊審核，只用來重新訓練 AI。請只拍物品，不要拍到人臉。</p>
           <div id="fb-options" class="fb-options"></div>
         </div>
         <div id="fb-thanks" class="thanks" hidden>謝謝回報！這筆資料會用來重新訓練 AI。</div>
@@ -67,7 +67,8 @@
       <div id="nothing" class="lowconf" hidden>👋 鏡頭前好像沒有東西<br>請把物品放到鏡頭前，再按「拍一下」。</div>
 
       <div id="lowconf" class="lowconf" hidden>
-        🤔 看不太清楚（信心度 <span id="lc-conf"></span>）<br>請換個角度、靠近一點、背景單純一點，再拍一次。
+        🤔 看不太清楚（信心度 <span id="lc-conf"></span>，這類需要 <span id="lc-need"></span>）<br>請換個角度、靠近一點、背景單純一點，再拍一次。
+        <div class="privacy" id="lc-note">📷 這張畫面會存成小照片給團隊審核，用來讓 AI 變更準。</div>
       </div>
     </section>
 
@@ -116,13 +117,27 @@
       <h2>每天辨識次數（近 14 天）</h2>
       <div id="chart-days" class="chart"></div>
 
-      <h2>認錯的照片（重新訓練用）</h2>
-      <p class="muted">依正確類別分組。按「下載重訓照片 ZIP」會得到每個類別一個資料夾，直接上傳到 Teachable Machine 對應的類別重新訓練。（照片只存在這台裝置）</p>
+      <h2>自動校準的信心門檻</h2>
+      <p class="muted">網站會從回報資料中學習：AI 猜成某一類時越常被說「不對」，那一類就要更有把握才回答，否則請使用者重拍。<br>
+        規則：門檻 = 70% + 0.5 ×（認錯率 − 10%），限制在 60%～95%；回報少於 10 筆時用預設 70%。</p>
+      <table class="tbl">
+        <thead><tr><th>類別</th><th>回報數</th><th>認錯率</th><th>目前門檻</th><th>說明</th></tr></thead>
+        <tbody id="thr-table"></tbody>
+      </table>
+
+      <h2>審核區（確認後才會拿去重新訓練）</h2>
+      <p class="muted">這裡有兩種照片：使用者按「不對」回報的，以及 AI 沒把握時自動存下來的。由團隊或老師確認正確類別，避免錯的標籤混進訓練資料。</p>
+      <p id="rv-count" class="muted"></p>
+      <p id="rv-code-row" class="rv-code-row" hidden><label>審核碼 <input id="rv-code" type="password" placeholder="團隊設定的審核碼"></label> <span id="rv-msg" class="rv-msg"></span></p>
+      <div id="review" class="review"></div>
+
+      <h2>已審核的照片（重新訓練用）</h2>
+      <p class="muted">按「下載重訓照片 ZIP」會得到每個類別一個資料夾，直接上傳到 Teachable Machine 對應的類別重新訓練。</p>
       <p id="folder-link" class="muted" hidden></p>
       <div id="gallery"></div>
 
       <div class="actions">
-        <button id="btn-zip" class="primary">📦 下載重訓照片 ZIP</button>
+        <button id="btn-zip" class="primary">📦 下載已審核重訓照片 ZIP</button>
         <button id="btn-csv" class="ghost">⬇️ 下載回報紀錄 CSV</button>
         <button id="btn-demo" class="ghost">🧪 顯示示範資料（簡報用）</button>
         <button id="btn-clear" class="ghost danger">🗑 清除這台裝置的紀錄</button>
@@ -130,7 +145,7 @@
     </section>
   </main>
 
-  <footer>影像在你的瀏覽器裡辨識，不會上傳；只有按「❌ 不對」回報時，才會送出那一張小照片供重新訓練。六七團隊 · 臺北市立內湖高級中學</footer>
+  <footer>影像在你的瀏覽器裡辨識，不會上傳；只有按「❌ 不對」或 AI 沒把握時，才會存下那一張小照片，經團隊審核後用來重新訓練。六七團隊 · 臺北市立內湖高級中學</footer>
 
   <canvas id="crop" width="224" height="224" hidden></canvas>
 

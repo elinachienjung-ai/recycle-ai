@@ -33,6 +33,7 @@ async function init() {
   console.log("模型輸入", inputInfo.shape, inputInfo.dtype, "類別", labels);
   $("status").textContent = "模型準備好了！按「開啟鏡頭」開始";
   window.__ready = true;
+  computeThresholds();
 }
 
 // ---------- 2. 鏡頭 ----------
@@ -135,14 +136,19 @@ function snap() {
     speak("請把物品放到鏡頭前");
     return;
   }
-  if (top.conf < CONFIG.THRESHOLD) {
+  // 每一類的門檻不一樣：常被認錯的類別，要更有把握才回答（自動校準）
+  const thr = thresholdFor(classOf(top.label).key);
+  if (top.conf < thr) {
     $("result").hidden = true; $("nothing").hidden = true; $("lowconf").hidden = false;
     $("lc-conf").textContent = Math.round(top.conf * 100) + "%";
-    logScan(top, "lowconf");
+    $("lc-need").textContent = Math.round(thr * 100) + "%";
+    logScan(top, "lowconf", thr);
+    saveSuspect();
+    $("lc-note").hidden = !CONFIG.SAVE_SUSPECTS;
     speak("看不太清楚，請換個角度再拍一次");
     return;
   }
-  logScan(top, "ok");
+  logScan(top, "ok", thr);
   showResult(lastResult);
 }
 
@@ -230,18 +236,20 @@ function speak(text) {
   speechSynthesis.speak(u);
 }
 
-// ---------- 6. 回報（對／不對）與辨識紀錄 ----------
+// ---------- 6. 回報、可疑樣本、自動門檻 ----------
 // 所有紀錄都存「類別 key」（例如 "塑膠類"），不存 labels.txt 原始名稱，換模型也能延續統計
-const load = (k) => { try { return JSON.parse(localStorage.getItem(k) || "[]"); } catch { return []; } };
+const load = (k, d = []) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
 const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
 function getReports() { return load("reports"); }
 function getScans() { return load("scans"); }
+function getSamples() { return load("samples"); }
+const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
 // 每按一次「拍一下」記一筆：結果是 ok（有答案）、lowconf（沒把握）、background（沒東西）
-function logScan(top, outcome) {
+function logScan(top, outcome, threshold) {
   const all = getScans();
   all.push({ time: new Date().toISOString(), county: $("county").value, predicted: classOf(top.label).key,
-             confidence: Math.round(top.conf * 100) / 100, outcome });
+             confidence: Math.round(top.conf * 100) / 100, outcome, threshold });
   store("scans", all.slice(-3000));
   sendToCloud({ type: "scan", ...all[all.length - 1] });
 }
@@ -261,7 +269,44 @@ async function flushPending() {
 }
 window.addEventListener("online", flushPending);
 
-function saveReport(correctKey) {
+// 讀雲端資料（30 秒內重複讀就用上次的結果）
+let cloudCache = null, cloudTime = 0;
+async function fetchCloud(force) {
+  if (!CONFIG.SHEET_URL) return null;
+  if (!force && cloudCache && Date.now() - cloudTime < 30000) return cloudCache;
+  try {
+    const data = await (await fetch(CONFIG.SHEET_URL)).json();
+    cloudCache = Array.isArray(data) ? { reports: data, scans: [], samples: [] }   // 舊版接收程式
+                                     : { reports: data.reports || [], scans: data.scans || [], samples: data.samples || [] };
+    cloudTime = Date.now();
+    return cloudCache;
+  } catch (e) { console.warn("讀取雲端失敗，改用本機資料", e); return null; }
+}
+
+// 存一筆「樣本」（之後要人工審核，確認標籤才會進重訓資料）
+// source：「回報」＝使用者按不對；「沒把握」＝AI 信心度不夠，自動存下來
+function saveSample(source, extra) {
+  const s = { id: newId(), time: new Date().toISOString(), county: $("county").value, source,
+              predicted: classOf(lastResult.label).key, confidence: Math.round(lastResult.conf * 100) / 100,
+              reported: "", item: "", photo: lastResult.thumb, status: "待審核", label: "", ...extra };
+  const all = getSamples(); all.push(s);
+  // 本機最多留 120 張照片，舊的先刪照片
+  let photos = 0;
+  for (let i = all.length - 1; i >= 0; i--) if (all[i].photo && ++photos > 120) all[i].photo = "";
+  if (!store("samples", all)) { all.forEach((x, i) => { if (i < all.length - 20) x.photo = ""; }); store("samples", all); }
+  if (CONFIG.UPLOAD_PHOTOS) sendToCloud({ type: "sample", ...s });
+  else sendToCloud({ type: "sample", ...s, photo: "" });
+}
+
+// 「AI 沒把握」時自動存可疑樣本（同一段時間連續重拍只存一張，避免重複）
+let lastSuspect = 0;
+function saveSuspect() {
+  if (!CONFIG.SAVE_SUSPECTS || Date.now() - lastSuspect < 5000) return;
+  lastSuspect = Date.now();
+  saveSample("沒把握");
+}
+
+function saveReport(correctKey, item = "") {
   const pred = lastResult;
   const predKey = classOf(pred.label).key;
   const rec = {
@@ -269,38 +314,57 @@ function saveReport(correctKey) {
     county: $("county").value,
     predicted: predKey,
     correct: correctKey,
+    item,
     isCorrect: predKey === correctKey,
     confidence: Math.round(pred.conf * 100) / 100,
   };
-  // 存在本機（認錯的才存照片，最多留 80 張以免塞滿）
-  const all = getReports();
-  all.push({ ...rec, thumb: rec.isCorrect ? null : pred.thumb });
-  let photos = 0;
-  for (let i = all.length - 1; i >= 0; i--) if (all[i].thumb && ++photos > 80) all[i].thumb = null;
-  if (!store("reports", all)) { all.forEach((r) => (r.thumb = null)); store("reports", all); }
-
-  // 送到雲端；認錯的照片也一起送（存到雲端硬碟，給重新訓練用）
-  sendToCloud({ type: "report", ...rec, photo: !rec.isCorrect && CONFIG.UPLOAD_PHOTOS ? pred.thumb : null });
+  const all = getReports(); all.push(rec); store("reports", all.slice(-5000));
+  sendToCloud({ type: "report", ...rec });
+  if (!rec.isCorrect) saveSample("回報", { reported: correctKey, item });
   $("fb-ask").hidden = true; $("fb-choose").hidden = true; $("fb-thanks").hidden = false;
-  $("fb-thanks").textContent = rec.isCorrect ? "謝謝確認！" : "謝謝回報！這筆資料會用來重新訓練 AI。";
+  $("fb-thanks").textContent = rec.isCorrect ? "謝謝確認！" : "謝謝回報！團隊審核後，這張照片會用來重新訓練 AI。";
+  computeThresholds();
 }
 
-// 「不對」的選項：列出所有類別（不含背景和 AI 剛剛猜的那類）
+// 「不對」：使用者不一定知道該丟哪類，但知道「這是什麼東西」→ 選物品圖示，網站自動對應類別
 function showWrongChoices() {
   $("fb-ask").hidden = true; $("fb-choose").hidden = false;
   $("privacy-note").hidden = !(CONFIG.SHEET_URL && CONFIG.UPLOAD_PHOTOS);
   const box = $("fb-options"); box.innerHTML = "";
-  const predKey = classOf(lastResult.label).key;
-  CONFIG.CLASSES.filter((c) => !c.background && c.key !== predKey).forEach((c) => {
+  CONFIG.ITEMS.forEach((it) => {
     const b = document.createElement("button");
-    b.textContent = `${c.icon} ${c.name}`;
-    b.onclick = () => saveReport(c.key);
+    b.className = "item-btn";
+    b.innerHTML = `<span class="item-icon">${it.icon}</span><span>${it.name}</span>`;
+    b.onclick = () => saveReport(it.key, it.name);
     box.appendChild(b);
   });
-  const other = document.createElement("button");
-  other.textContent = "🚮 都不是（一般垃圾／其他）";
-  other.onclick = () => saveReport("其他");
-  box.appendChild(other);
+}
+
+// ---------- 自動校準信心門檻（從回報資料中學習） ----------
+// 規則：看「AI 猜成這一類」時被使用者說不對的比例（認錯率）
+//   回報少於 minReports 筆 → 用預設門檻
+//   否則 門檻 = 預設 + 0.5 ×（認錯率 − 10%），並限制在 min～max 之間
+//   例：認錯率 10% → 70%；30% → 80%；50% → 90%；0% → 65%
+let thresholds = {};
+function thresholdFor(key) { return thresholds[key]?.value ?? CONFIG.THRESHOLD; }
+async function computeThresholds() {
+  const A = CONFIG.AUTO_THRESHOLD;
+  const cloud = await fetchCloud();
+  const list = cloud ? cloud.reports : getReports();
+  const out = {};
+  CONFIG.CLASSES.filter((c) => !c.background).forEach((c) => {
+    const of = list.filter((r) => r.predicted === c.key);
+    const wrong = of.filter((r) => !isTrue(r.isCorrect)).length;
+    const rate = of.length ? wrong / of.length : 0;
+    let value = CONFIG.THRESHOLD, auto = false;
+    if (A.enabled && of.length >= A.minReports) {
+      value = Math.min(A.max, Math.max(A.min, CONFIG.THRESHOLD + 0.5 * (rate - 0.1)));
+      auto = true;
+    }
+    out[c.key] = { n: of.length, wrong, rate, value: Math.round(value * 100) / 100, auto };
+  });
+  thresholds = out;
+  return out;
 }
 
 // ---------- 7. 後台儀表板 ----------
@@ -335,19 +399,15 @@ function makeDemoData() {
 let demoMode = false;
 
 async function loadDashboardData() {
-  if (demoMode) { const d = makeDemoData(); $("dash-source").textContent = "資料來源：示範資料"; return { list: d.reports, local: [], scans: d.scans }; }
-  if (CONFIG.SHEET_URL) {
-    try {
-      const data = await (await fetch(CONFIG.SHEET_URL)).json();
-      const pending = load("pending").length;
-      $("dash-source").textContent = `資料來源：雲端（所有使用者的資料）${pending ? `・這台裝置還有 ${pending} 筆待上傳` : ""}`;
-      // 舊版接收程式只回傳回報陣列；新版回傳 { reports, scans }
-      return Array.isArray(data) ? { list: data, local: getReports(), scans: getScans() }
-                                 : { list: data.reports || [], local: getReports(), scans: data.scans || [] };
-    } catch (e) { console.warn("讀取試算表失敗，改用本機資料", e); }
+  if (demoMode) { const d = makeDemoData(); $("dash-source").textContent = "資料來源：示範資料"; return { list: d.reports, scans: d.scans, samples: [] }; }
+  const cloud = await fetchCloud(true);
+  if (cloud) {
+    const pending = load("pending").length;
+    $("dash-source").textContent = `資料來源：雲端（所有使用者的資料）${pending ? `・這台裝置還有 ${pending} 筆待上傳` : ""}`;
+    return { list: cloud.reports, scans: cloud.scans, samples: cloud.samples, cloud: true };
   }
   $("dash-source").textContent = "資料來源：這台裝置（尚未連接 Google 試算表）";
-  return { list: getReports(), local: getReports(), scans: getScans() };
+  return { list: getReports(), scans: getScans(), samples: getSamples() };
 }
 
 // 篩選：期間與縣市
@@ -368,7 +428,7 @@ async function renderDashboard() {
   const data = await loadDashboardData();
   $("demo-banner").hidden = !demoMode;
   $("btn-demo").textContent = demoMode ? "↩️ 回到真實資料" : "🧪 顯示示範資料（簡報用）";
-  const list = applyFilter(data.list), scans = applyFilter(data.scans), local = applyFilter(data.local);
+  const list = applyFilter(data.list), scans = applyFilter(data.scans);
   const wrong = list.filter((r) => !isTrue(r.isCorrect));
   const keys = CONFIG.CLASSES.filter((c) => !c.background).map((c) => c.key);
 
@@ -423,21 +483,83 @@ async function renderDashboard() {
   const dmax = Math.max(1, ...Object.values(perDay));
   $("chart-days").innerHTML = `<div class="cols">${daysArr.map((d) => `<div class="col" title="${d}：${perDay[d]} 次"><div class="col-bar" style="height:${(perDay[d] / dmax) * 100}%"></div><span>${d.slice(8)}</span></div>`).join("")}</div>`;
 
-  // 6. 重訓照片（依正確類別分組）
+  // 6. 自動門檻表
+  const thr = demoMode ? demoThresholds(data.list) : await computeThresholds();
+  $("thr-table").innerHTML = keys.map((k) => {
+    const t = thr[k] || { n: 0, rate: 0, value: CONFIG.THRESHOLD, auto: false };
+    return `<tr><td>${nameOf(k)}</td><td>${t.n}</td><td>${t.n ? Math.round(t.rate * 100) + "%" : "－"}</td>
+      <td><b>${Math.round(t.value * 100)}%</b></td><td class="muted">${t.auto ? (t.value > CONFIG.THRESHOLD ? "常認錯，提高門檻" : t.value < CONFIG.THRESHOLD ? "很少認錯，稍微放寬" : "維持") : `資料不足（少於 ${CONFIG.AUTO_THRESHOLD.minReports} 筆），用預設`}</td></tr>`;
+  }).join("");
+
+  // 7. 審核區：確認標籤後才會進重訓資料
+  renderReview(data.samples, data.cloud);
+}
+
+// 審核區
+function renderReview(samples, cloud) {
+  const pending = samples.filter((x) => x.status === "待審核" && x.photo);
+  const confirmed = samples.filter((x) => x.status === "已確認");
+  $("rv-count").textContent = `待審核 ${pending.length} 張・已確認 ${confirmed.length} 張`;
+  $("rv-code-row").hidden = !cloud;
+  const opts = (sel) => CONFIG.CLASSES.map((c) => `<option value="${c.key}" ${c.key === sel ? "selected" : ""}>${c.icon} ${c.name}</option>`).join("") +
+    `<option value="其他" ${sel === "其他" ? "selected" : ""}>🚮 其他（不用來訓練）</option>`;
+  $("review").innerHTML = pending.slice(0, 40).map((x) => `<div class="rv-card" data-id="${esc(x.id)}">
+      <img src="${esc(x.photo)}" alt="">
+      <div class="rv-info">
+        <div><span class="rv-tag ${x.source === "回報" ? "rv-report" : "rv-low"}">${x.source === "回報" ? "使用者回報" : "AI 沒把握"}</span></div>
+        <div>AI 認成 ${nameOf(x.predicted)}（${Math.round(x.confidence * 100)}%）</div>
+        ${x.source === "回報" ? `<div>使用者說：${esc(x.item || "")} → ${nameOf(x.reported)}</div>` : ""}
+        <div class="rv-actions"><select>${opts(x.reported || x.predicted)}</select>
+          <button class="ok rv-ok">✅ 確認</button><button class="bad rv-del">🗑</button></div>
+      </div></div>`).join("") || `<p class="muted">${demoMode ? "示範資料沒有樣本照片" : "目前沒有待審核的樣本 👍"}</p>`;
+  $("review").querySelectorAll(".rv-card").forEach((card) => {
+    const id = card.dataset.id;
+    card.querySelector(".rv-ok").onclick = () => reviewSample(id, "已確認", card.querySelector("select").value, cloud);
+    card.querySelector(".rv-del").onclick = () => reviewSample(id, "已刪除", "", cloud);
+  });
+  // 已確認的照片（這台裝置）→ 可下載 ZIP
   const groups = {};
-  local.filter((r) => r.thumb).forEach((r) => (groups[r.correct] = groups[r.correct] || []).push(r));
+  getSamples().filter((x) => x.status === "已確認" && x.photo && x.label !== "其他").forEach((x) => (groups[x.label] = groups[x.label] || []).push(x));
   $("gallery").innerHTML = Object.entries(groups).map(([k, arr]) => `<div class="gal-group"><h3>${nameOf(k)}（${arr.length} 張）</h3><div class="gal">` +
-    arr.map((r) => `<a href="${r.thumb}" download="${k}_${r.time.replace(/[:.]/g, "-")}.jpg" title="AI 認成 ${nameOf(r.predicted)}"><img src="${r.thumb}" alt=""></a>`).join("") +
-    `</div></div>`).join("") || `<p class="muted">${demoMode ? "示範資料沒有照片" : "尚無照片"}</p>`;
+    arr.map((x) => `<a href="${x.photo}" download="${k}_${x.time.replace(/[:.]/g, "-")}.jpg"><img src="${x.photo}" alt=""></a>`).join("") + `</div></div>`).join("") ||
+    `<p class="muted">${cloud ? "雲端審核確認的照片會自動放進雲端硬碟資料夾。" : "還沒有已確認的照片。"}</p>`;
   $("btn-zip").disabled = !Object.keys(groups).length;
   $("folder-link").hidden = !CONFIG.PHOTO_FOLDER_URL || demoMode;
-  $("folder-link").innerHTML = `📁 所有使用者回報的照片都在 <a href="${esc(CONFIG.PHOTO_FOLDER_URL)}" target="_blank" rel="noopener">雲端硬碟資料夾</a>（每個類別一個資料夾）。`;
+  $("folder-link").innerHTML = `📁 審核通過的照片都在 <a href="${esc(CONFIG.PHOTO_FOLDER_URL)}" target="_blank" rel="noopener">雲端硬碟資料夾</a>（每個類別一個資料夾）。`;
+}
+
+function reviewSample(id, status, label, cloud) {
+  // 本機的樣本直接更新
+  const all = getSamples(), s = all.find((x) => x.id === id);
+  if (s) { s.status = status; s.label = label; if (status === "已刪除") s.photo = ""; store("samples", all); }
+  // 雲端：要輸入審核碼，避免路人亂改
+  if (cloud) {
+    const code = $("rv-code").value.trim();
+    if (!code) { alertBox("請先輸入審核碼"); return; }
+    try { localStorage.setItem("reviewCode", code); } catch {}
+    sendToCloud({ type: "review", id, status, label, code });
+    if (cloudCache) { const c = cloudCache.samples.find((x) => x.id === id); if (c) { c.status = status; c.label = label; } }
+  }
+  renderReview(cloud ? cloudCache.samples : getSamples(), cloud);
+}
+function alertBox(msg) { $("rv-msg").textContent = msg; setTimeout(() => ($("rv-msg").textContent = ""), 3000); }
+
+// 示範資料的門檻（用示範回報算）
+function demoThresholds(list) {
+  const A = CONFIG.AUTO_THRESHOLD, out = {};
+  CONFIG.CLASSES.filter((c) => !c.background).forEach((c) => {
+    const of = list.filter((r) => r.predicted === c.key), wrong = of.filter((r) => !isTrue(r.isCorrect)).length, rate = of.length ? wrong / of.length : 0;
+    const auto = of.length >= A.minReports;
+    const value = auto ? Math.min(A.max, Math.max(A.min, CONFIG.THRESHOLD + 0.5 * (rate - 0.1))) : CONFIG.THRESHOLD;
+    out[c.key] = { n: of.length, wrong, rate, value, auto };
+  });
+  return out;
 }
 
 function downloadCSV() {
   const list = demoMode ? makeDemoData().reports : getReports();
-  const head = ["時間", "縣市", "AI認成", "正確類別", "是否正確", "信心度"];
-  const lines = [head.join(",")].concat(list.map((r) => [r.time, r.county, r.predicted, r.correct, r.isCorrect, r.confidence].join(",")));
+  const head = ["時間", "縣市", "AI認成", "使用者選的物品", "正確類別", "是否正確", "信心度"];
+  const lines = [head.join(",")].concat(list.map((r) => [r.time, r.county, r.predicted, r.item || "", r.correct, r.isCorrect, r.confidence].join(",")));
   saveFile(new Blob(["﻿" + lines.join("\n")], { type: "text/csv" }), demoMode ? "示範資料_回報紀錄.csv" : "回報紀錄.csv");
 }
 
@@ -449,12 +571,12 @@ function saveFile(blob, name) {
 // 把認錯的照片打包成 ZIP：每個類別一個資料夾，解壓後可直接整包上傳到 Teachable Machine 對應類別
 function downloadZip() {
   const files = [];
-  getReports().filter((r) => r.thumb).forEach((r, i) => {
-    const bin = atob(r.thumb.split(",")[1]), bytes = new Uint8Array(bin.length);
+  getSamples().filter((x) => x.status === "已確認" && x.photo && x.label !== "其他").forEach((x, i) => {
+    const bin = atob(x.photo.split(",")[1]), bytes = new Uint8Array(bin.length);
     for (let j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
-    files.push({ name: `${r.correct}/${r.correct}_${String(i + 1).padStart(3, "0")}.jpg`, data: bytes });
+    files.push({ name: `${x.label}/${x.label}_${String(i + 1).padStart(3, "0")}.jpg`, data: bytes });
   });
-  saveFile(makeZip(files), "重訓照片.zip");
+  saveFile(makeZip(files), "重訓照片_已審核.zip");
 }
 
 // 最簡單的 ZIP 格式（不壓縮），不需要額外函式庫
@@ -495,7 +617,8 @@ $("btn-zip").onclick = downloadZip;
 $("btn-demo").onclick = () => { demoMode = !demoMode; renderDashboard(); };
 $("f-range").onchange = renderDashboard;
 $("f-county").onchange = renderDashboard;
-$("btn-clear").onclick = () => { if (confirm("確定清除這台裝置的所有回報和辨識紀錄？")) { localStorage.removeItem("reports"); localStorage.removeItem("scans"); renderDashboard(); } };
+try { $("rv-code").value = localStorage.getItem("reviewCode") || ""; } catch {}
+$("btn-clear").onclick = () => { if (confirm("確定清除這台裝置的所有回報和辨識紀錄？")) { localStorage.removeItem("reports"); localStorage.removeItem("scans"); localStorage.removeItem("samples"); renderDashboard(); } };
 document.addEventListener("keydown", (e) => { if (e.code === "Space" && !$("btn-snap").disabled) { e.preventDefault(); snap(); } });
 document.querySelectorAll(".tab").forEach((t) => (t.onclick = () => {
   document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("active", x === t));

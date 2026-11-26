@@ -118,3 +118,17 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px
 .col-bar { width: 100%; max-width: 26px; background: var(--bar); border-radius: 4px 4px 0 0; min-height: 2px; }
 .col span { margin-top: 4px; }
 .privacy { font-size: 13px; color: var(--muted); margin: -4px 0 8px; font-weight: 400 !important; }
+
+.fb-options .item-btn { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px; }
+.item-icon { font-size: 30px; line-height: 1.1; }
+.review { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.rv-card { display: grid; grid-template-columns: 96px 1fr; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 14px; }
+.rv-card img { width: 96px; height: 96px; object-fit: cover; border-radius: 8px; }
+.rv-tag { display: inline-block; font-size: 12px; padding: 0 8px; border-radius: 999px; border: 1px solid var(--line); }
+.rv-report { border-color: var(--bar); } .rv-low { border-color: var(--warn-line); }
+.rv-actions { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.rv-actions select { font-size: 14px; padding: 4px; }
+.rv-actions button { padding: 4px 10px; font-size: 14px; }
+.rv-code-row input { font-size: 15px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--text); }
+.rv-msg { color: var(--bad); font-size: 14px; }
+@media (max-width: 480px) { .review { grid-template-columns: 1fr; } }
