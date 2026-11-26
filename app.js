@@ -10,11 +10,13 @@ let facing = "environment";// 手機預設用後鏡頭
 let recent = [];           // 最近幾次的辨識機率（用來平均，讓結果比較穩）
 let lastResult = null;     // 最近一次「拍一下」的結果（回報用）
 let inputInfo = null;      // 模型輸入格式
+let cupRules = null;       // 手搖飲拆解規則
 
 // ---------- 1. 載入模型、標籤、縣市規則 ----------
 async function init() {
   // 縣市選單
   rules = await (await fetch("data/county_rules.json")).json();
+  cupRules = await (await fetch("data/drink_cup_rules.json")).json();
   const sel = $("county");
   for (const c of Object.keys(rules.rules)) sel.add(new Option(c, c));
   sel.value = localStorage.getItem("county") || CONFIG.DEFAULT_COUNTY;
@@ -171,7 +173,37 @@ function showResult(res) {
   $("r-prep").textContent = r["前處理"] || "－";
   const src = (r["來源"] || []).map((u, i) => `<a href="${u}" target="_blank" rel="noopener">來源${i + 1}</a>`).join("、");
   $("r-source").innerHTML = `${$("county").value}・${r.status || ""} ${src ? "・" + src : ""}`;
+  if (info.cup) { showCup(); return; }
+  $("cup").hidden = true;
   speak(`這是${info.name}。請丟到${r["丟哪裡"] || ""}。${r["前處理"] || ""}`);
+}
+
+// 手搖飲拆解卡片：杯身、杯蓋、封膜、吸管各丟哪裡
+function binClass(where) {
+  if (where.includes("一般垃圾")) return "bin-trash";
+  if (where.includes("紙")) return "bin-paper";
+  if (where.includes("塑膠")) return "bin-plastic";
+  return "bin-other";
+}
+function showCup() {
+  const county = $("county").value;
+  $("r-where").textContent = "要拆開，各部分丟不同地方（看下面步驟）";
+  $("r-prep").textContent = "先把飲料倒掉，封膜、吸管、杯蓋、杯身分開";
+  $("r-source").textContent = "";
+  const steps = cupRules.steps.map((st) => {
+    const local = county === "臺北市" && st["臺北市"] ? `<div class="cup-local">臺北市：${st["臺北市"]}</div>` : "";
+    const src = st["來源"].map((u, i) => `<a href="${u}" target="_blank" rel="noopener">來源${i + 1}</a>`).join("、");
+    return `<li class="cup-step">
+      <span class="cup-num">${st["順序"]}</span><span class="cup-icon">${st.icon}</span>
+      <div class="cup-body"><b>${st["組件"]}</b>
+        <span class="bin ${binClass(st["丟哪裡"])}">${st["丟哪裡"].replace("資源回收：", "♻️ ").replace("一般垃圾", "🚮 一般垃圾")}</span>
+        <div class="cup-prep">${st["前處理"]}</div>${local}
+        <div class="cup-src">${st.status}・${src}</div></div></li>`;
+  }).join("");
+  $("cup").innerHTML = `<h3>🧋 手搖飲拆解步驟</h3><ol class="cup-list">${steps}</ol>
+    <p class="cup-note">${county === "臺北市" ? "" : "其他縣市大原則相同，回收日期與細項請依當地清潔隊規定。"}封膜目前只查到新北市的官方說明，其他縣市先保守丟一般垃圾。</p>`;
+  $("cup").hidden = false;
+  speak("這是手搖飲杯，請拆開分類。先把飲料倒掉。封膜和吸管丟一般垃圾。杯蓋和塑膠杯身回收到塑膠類。如果是紙杯，回收到紙容器。紙杯套回收到紙類。");
 }
 
 // 把目前畫面存成小張照片（回報用，給重新訓練）

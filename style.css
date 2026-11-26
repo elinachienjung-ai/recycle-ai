@@ -81,3 +81,20 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px
   .r-name { font-size: 28px; } .r-icon { font-size: 52px; }
   .stat-num { font-size: 24px; } .bar-row { grid-template-columns: 6.5em 1fr 2em; }
 }
+
+.cup { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.cup h3 { margin: 0 0 8px; font-size: 20px; }
+.cup-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.cup-step { display: grid; grid-template-columns: 28px 40px 1fr; gap: 8px; align-items: start; background: var(--bg); border-radius: 12px; padding: 10px; }
+.cup-num { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.cup-icon { font-size: 30px; line-height: 1; }
+.cup-body b { font-size: 17px; margin-right: 6px; }
+.bin { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: 15px; font-weight: 700; border: 1px solid var(--line); background: var(--card); }
+.bin-trash { border-color: #8a8f8c; }
+.bin-plastic { border-color: var(--bar); }
+.bin-paper { border-color: var(--accent); }
+.cup-prep { margin-top: 4px; }
+.cup-local { font-size: 14px; color: var(--muted); }
+.cup-src { font-size: 12px; color: var(--muted); }
+.cup-src a { color: inherit; }
+.cup-note { font-size: 13px; color: var(--muted); margin: 10px 0 0; }

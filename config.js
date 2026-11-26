@@ -14,7 +14,7 @@ const CONFIG = {
   SHEET_URL: "",
 
   // 類別設定：網站會用 labels.txt 的名稱自動對應（名稱一樣、或含有 aliases 裡的字都算）
-  // key：county_rules.json 裡的類別名稱；name：畫面顯示；icon：圖示；background: true 代表「沒有物品」
+  // key：county_rules.json 裡的類別名稱；name：畫面顯示；icon：圖示；background: true 代表「沒有物品」；cup: true 會顯示手搖飲拆解卡片
   CLASSES: [
     { key: "寶特瓶",   name: "寶特瓶",     icon: "🧴", aliases: ["PET", "寶特"] },
     { key: "塑膠類",   name: "塑膠類",     icon: "🥡", aliases: ["塑膠", "塑膠餐盒", "塑膠容器"] },
@@ -23,6 +23,7 @@ const CONFIG = {
     { key: "鐵鋁罐",   name: "鐵鋁罐",     icon: "🥫", aliases: ["金屬", "鐵罐", "鋁罐", "易開罐"] },
     { key: "玻璃容器", name: "玻璃容器",   icon: "🍾", aliases: ["玻璃", "玻璃瓶"] },
     { key: "電池",     name: "電池",       icon: "🔋", aliases: ["乾電池", "CDCD", "battery"] },
+    { key: "手搖杯",   name: "手搖飲杯",   icon: "🧋", aliases: ["手搖", "飲料杯", "手搖飲", "杯子"], cup: true },
     { key: "背景",     name: "沒有物品",   icon: "👋", aliases: ["background", "無物品", "沒有東西"], background: true },
   ],
 };

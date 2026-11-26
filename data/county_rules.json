@@ -90,19 +90,19 @@
     ]
    },
    "紙類": {
-    "丟哪裡": "資源回收：廢紙類",
-    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
-    "status": "全國通則（待查證）",
-    "來源": []
+    "丟哪裡": "資源回收：廢紙類（平面類）",
+    "前處理": "先除去塑膠封面、膠帶、線圈、釘書針，裝箱或綑綁；每週一、五交清潔隊回收車",
+    "status": "縣市已查證",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?keyword=%E7%B4%99%E6%9D%AF"
+    ]
    },
    "紙容器": {
-    "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
-    "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
-    "status": "全國通則（待查證）",
+    "丟哪裡": "資源回收：紙容器（立體類）",
+    "前處理": "倒掉剩餘內容物，擦拭或沖洗；每週二、四、六交清潔隊回收車",
+    "status": "縣市已查證",
     "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15",
-     "https://recycle.ntpc.gov.tw/Article/Index/category42",
-     "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?keyword=%E7%B4%99%E6%9D%AF"
     ]
    },
    "鐵鋁罐": {
