@@ -37,7 +37,10 @@
    `https://你的帳號.github.io/recycle-ai/`
 8. 用電腦和手機打開這個網址，允許使用相機，就可以 demo 了。
 
-之後要更新（例如換新模型）：在 repository 裡進入 `model` 資料夾 →「Add file」→「Upload files」，上傳新的 `model.tflite` 和 `labels.txt` 覆蓋即可，約 1 分鐘後網站就更新。
+之後要更新（例如換新模型）：網站支援兩種 Teachable Machine 匯出格式，放進 `model` 資料夾即可：
+- **TensorFlow.js（建議）**：`model.json`、`weights.bin`、`metadata.json`（有 metadata.json 時網站自動用這個格式）
+- **TensorFlow Lite**：`model.tflite`、`labels.txt`
+- 或在 Teachable Machine 選「上傳我的模型」，把分享連結貼到 `config.js` 的 `MODEL_URL`。
 
 ## 4. 讓所有使用者的資料存在同一個地方（Google 試算表＋雲端硬碟）
 

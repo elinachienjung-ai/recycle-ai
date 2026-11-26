@@ -11,6 +11,7 @@ let recent = [];           // 最近幾次的辨識機率（用來平均，讓�
 let lastResult = null;     // 最近一次「拍一下」的結果（回報用）
 let inputInfo = null;      // 模型輸入格式
 let cupRules = null;       // 手搖飲拆解規則
+let modelFormat = "";      // 模型格式
 
 // ---------- 1. 載入模型、標籤、縣市規則 ----------
 async function init() {
@@ -22,15 +23,33 @@ async function init() {
   sel.value = localStorage.getItem("county") || CONFIG.DEFAULT_COUNTY;
   sel.onchange = () => { localStorage.setItem("county", sel.value); if (lastResult) showResult(lastResult); };
 
-  // 標籤：每行像「0 寶特瓶」，去掉前面的數字
-  const txt = await (await fetch("model/labels.txt")).text();
-  labels = txt.trim().split(/\r?\n/).map((l) => l.replace(/^\d+\s+/, "").trim());
-
-  // 模型
-  tflite.setWasmPath("lib/tflite/");
-  model = await tflite.loadTFLiteModel("model/model.tflite");
-  inputInfo = model.inputs[0];   // 例如 shape [1,224,224,3]、dtype int32（量化）或 float32
-  console.log("模型輸入", inputInfo.shape, inputInfo.dtype, "類別", labels);
+  // 模型：支援兩種 Teachable Machine 匯出格式
+  //  (1) TensorFlow.js：model.json + weights.bin + metadata.json（或 Teachable Machine 的分享連結）
+  //  (2) TensorFlow Lite：model.tflite + labels.txt
+  const base = CONFIG.MODEL_URL || "model/";
+  let meta = null;
+  try { const r = await fetch(base + "metadata.json"); if (r.ok) meta = await r.json(); } catch {}
+  if (meta) {
+    try { await tf.setBackend("webgl"); } catch { await tf.setBackend("cpu"); }
+    await tf.ready();
+    labels = meta.labels;
+    model = await tf.loadLayersModel(base + "model.json");
+    const shp = model.inputs[0].shape;                 // [null, 224, 224, 3]
+    inputInfo = { shape: [1, shp[1], shp[2], shp[3]], dtype: "float32" };
+    modelFormat = "TensorFlow.js";
+  } else {
+    // 標籤：每行像「0 寶特瓶」，去掉前面的數字
+    const txt = await (await fetch(base + "labels.txt")).text();
+    labels = txt.trim().split(/\r?\n/).map((l) => l.replace(/^\d+\s+/, "").trim());
+    tflite.setWasmPath("lib/tflite/");
+    model = await tflite.loadTFLiteModel(base + "model.tflite");
+    inputInfo = model.inputs[0];   // 例如 shape [1,224,224,3]、dtype int32（量化）或 float32
+    modelFormat = "TensorFlow Lite";
+  }
+  console.log("模型", modelFormat, inputInfo.shape, inputInfo.dtype, "類別", labels);
+  // 檢查類別名稱是否都對得上網站設定
+  const unknown = labels.filter((l) => !CONFIG.CLASSES.some((c) => c === classOf(l)));
+  if (unknown.length) console.warn("這些類別名稱網站不認得，請到 config.js 的 CLASSES 加別名：", unknown);
   $("status").textContent = "模型準備好了！按「開啟鏡頭」開始";
   window.__ready = true;
   computeThresholds();

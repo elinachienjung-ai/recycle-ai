@@ -12,6 +12,10 @@ const CONFIG = {
   // 原圖和左右翻轉圖各辨識一次再平均（比較穩，建議開著）
   FLIP_AVERAGE: true,
 
+  // 模型位置：空字串＝用網站 model/ 資料夾裡的檔案
+  // 也可以貼 Teachable Machine「上傳模型」後的分享連結，例如 "https://teachablemachine.withgoogle.com/models/xxxxxx/"
+  MODEL_URL: "",
+
   // 預設縣市
   DEFAULT_COUNTY: "臺北市",
 
