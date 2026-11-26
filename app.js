@@ -188,7 +188,7 @@ function binClass(where) {
 function showCup() {
   const county = $("county").value;
   $("r-where").textContent = "要拆開，各部分丟不同地方（看下面步驟）";
-  $("r-prep").textContent = "先把飲料倒掉，封膜、吸管、杯蓋、杯身分開";
+  $("r-prep").textContent = "先把飲料倒掉，杯蓋、杯身、杯套（和封膜、吸管）分開";
   $("r-source").textContent = "";
   const steps = cupRules.steps.map((st) => {
     const local = county === "臺北市" && st["臺北市"] ? `<div class="cup-local">臺北市：${st["臺北市"]}</div>` : "";
@@ -200,10 +200,10 @@ function showCup() {
         <div class="cup-prep">${st["前處理"]}</div>${local}
         <div class="cup-src">${st.status}・${src}</div></div></li>`;
   }).join("");
-  $("cup").innerHTML = `<h3>🧋 手搖飲拆解步驟</h3><ol class="cup-list">${steps}</ol>
+  $("cup").innerHTML = `<h3>🥤 飲料杯拆解步驟</h3><p class="cup-note" style="margin:0 0 8px">手搖飲杯、咖啡杯都適用，杯子沒有的部分就跳過。</p><ol class="cup-list">${steps}</ol>
     <p class="cup-note">${county === "臺北市" ? "" : "其他縣市大原則相同，回收日期與細項請依當地清潔隊規定。"}封膜目前只查到新北市的官方說明，其他縣市先保守丟一般垃圾。</p>`;
   $("cup").hidden = false;
-  speak("這是手搖飲杯，請拆開分類。先把飲料倒掉。封膜和吸管丟一般垃圾。杯蓋和塑膠杯身回收到塑膠類。如果是紙杯，回收到紙容器。紙杯套回收到紙類。");
+  speak("這是飲料杯，請拆開分類。先把飲料倒掉。封膜和吸管丟一般垃圾。塑膠杯蓋和塑膠杯身回收到塑膠類。紙杯和咖啡紙杯回收到紙容器。紙杯套回收到紙類。");
 }
 
 // 把目前畫面存成小張照片（回報用，給重新訓練）

@@ -23,7 +23,7 @@ const CONFIG = {
     { key: "鐵鋁罐",   name: "鐵鋁罐",     icon: "🥫", aliases: ["金屬", "鐵罐", "鋁罐", "易開罐"] },
     { key: "玻璃容器", name: "玻璃容器",   icon: "🍾", aliases: ["玻璃", "玻璃瓶"] },
     { key: "電池",     name: "電池",       icon: "🔋", aliases: ["乾電池", "CDCD", "battery"] },
-    { key: "手搖杯",   name: "手搖飲杯",   icon: "🧋", aliases: ["手搖", "飲料杯", "手搖飲", "杯子"], cup: true },
+    { key: "飲料杯",   name: "飲料杯",     icon: "🥤", aliases: ["手搖杯", "手搖", "手搖飲", "咖啡杯", "咖啡", "杯子"], cup: true },
     { key: "背景",     name: "沒有物品",   icon: "👋", aliases: ["background", "無物品", "沒有東西"], background: true },
   ],
 };
