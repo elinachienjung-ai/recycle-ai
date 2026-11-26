@@ -27,23 +27,25 @@ async function init() {
   //  (1) TensorFlow.js：model.json + weights.bin + metadata.json（或 Teachable Machine 的分享連結）
   //  (2) TensorFlow Lite：model.tflite + labels.txt
   const base = CONFIG.MODEL_URL || "model/";
+  // 加上每 10 分鐘換一次的版本號，避免換新模型後還讀到 GitHub 快取的舊檔
+  const v = "?v=" + Math.floor(Date.now() / 600000);
   let meta = null;
-  try { const r = await fetch(base + "metadata.json", { cache: "no-cache" }); if (r.ok) meta = await r.json(); } catch {}
+  try { const r = await fetch(base + "metadata.json" + v, { cache: "no-cache" }); if (r.ok) meta = await r.json(); } catch {}
   if (meta) {
     try { await tf.setBackend("webgl"); } catch { await tf.setBackend("cpu"); }
     await tf.ready();
     labels = meta.labels;
-    model = await tf.loadLayersModel(base + "model.json");
+    model = await tf.loadLayersModel(base + "model.json" + v);
     const shp = model.inputs[0].shape;                 // [null, 224, 224, 3]
     inputInfo = { shape: [1, shp[1], shp[2], shp[3]], dtype: "float32" };
     modelFormat = "TensorFlow.js";
   } else {
     // 標籤：每行像「0 寶特瓶」，去掉前面的數字
-    const txt = await (await fetch(base + "labels.txt", { cache: "no-cache" })).text();
+    const txt = await (await fetch(base + "labels.txt" + v, { cache: "no-cache" })).text();
     labels = txt.trim().split(/\r?\n/).map((l) => l.replace(/^\d+\s+/, "").trim());
     tflite.setWasmPath("lib/tflite/");
     // 用 no-cache 確保換新模型後瀏覽器不會用到舊的
-    const buf = await (await fetch(base + "model.tflite", { cache: "no-cache" })).arrayBuffer();
+    const buf = await (await fetch(base + "model.tflite" + v, { cache: "no-cache" })).arrayBuffer();
     model = await tflite.loadTFLiteModel(buf);
     inputInfo = model.inputs[0];   // 例如 shape [1,224,224,3]、dtype int32（量化）或 float32
     modelFormat = "TensorFlow Lite";
