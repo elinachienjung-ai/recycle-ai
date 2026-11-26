@@ -178,7 +178,8 @@ function showResult(res) {
   $("r-source").innerHTML = `${$("county").value}・${r.status || ""} ${src ? "・" + src : ""}`;
   if (info.cup) { showCup(); return; }
   $("cup").hidden = true;
-  speak(`這是${info.name}。請丟到${r["丟哪裡"] || ""}。${r["前處理"] || ""}`);
+  // 語音只講「是什麼類＋前處理提醒」，不講收運時間
+  speak(`這是${info.name}。${info.say || "請丟到" + (r["丟哪裡"] || "")}`);
 }
 
 // 手搖飲拆解卡片：杯身、杯蓋、封膜、吸管各丟哪裡
