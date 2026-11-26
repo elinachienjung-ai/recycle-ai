@@ -1,6 +1,8 @@
 # 一拍就知道：AI 即時辨識回收物分類網站
 
-純 HTML / JavaScript 靜態網站。AI 模型（Teachable Machine 匯出的 TFLite 量化模型）直接在瀏覽器裡執行，影像不會上傳。電腦、手機、平板開同一個網址都能用。
+目前網址：https://snapsort67.github.io/recycle-ai/ （GitHub repo：snapsort67/recycle-ai）
+
+純 HTML / JavaScript 靜態網站。AI 模型（Teachable Machine 匯出的模型，支援 TFLite 與 TensorFlow.js）直接在瀏覽器裡執行，影像不會上傳。電腦、手機、平板開同一個網址都能用。
 
 ## 1. 資料夾內容
 
