@@ -3,6 +3,9 @@ const CONFIG = {
   // 信心度門檻：AI 最高的機率低於這個數字，就請使用者換角度再拍（0.7 = 70%）
   THRESHOLD: 0.7,
 
+  // 原圖和左右翻轉圖各辨識一次再平均（比較穩，建議開著）
+  FLIP_AVERAGE: true,
+
   // 預設縣市
   DEFAULT_COUNTY: "臺北市",
 

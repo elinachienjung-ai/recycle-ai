@@ -59,23 +59,33 @@ async function startCamera() {
 }
 
 // ---------- 3. 辨識一張畫面 ----------
-// 跟 Teachable Machine 一樣：取畫面中間的正方形，縮成 224×224
+// 跟 Teachable Machine 一樣：取畫面中間的正方形，縮成 224×224。
+// Teachable Machine 用鏡頭蒐集照片時會左右翻轉，所以「原圖」和「翻轉圖」各辨識一次再平均，結果比較穩。
 function predictFrame(source) {
   const [, h, w] = inputInfo.shape;
   const c = $("crop"); c.width = w; c.height = h;
   const ctx = c.getContext("2d", { willReadFrequently: true });
   const sw = source.videoWidth || source.width, sh = source.videoHeight || source.height;
   const side = Math.min(sw, sh);
-  ctx.drawImage(source, (sw - side) / 2, (sh - side) / 2, side, side, 0, 0, w, h);
+  const results = [];
+  for (const flip of CONFIG.FLIP_AVERAGE ? [false, true] : [false]) {
+    ctx.setTransform(flip ? -1 : 1, 0, 0, 1, flip ? w : 0, 0);
+    ctx.drawImage(source, (sw - side) / 2, (sh - side) / 2, side, side, 0, 0, w, h);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    results.push(runModel(c));
+  }
+  return results[0].map((_, k) => results.reduce((s, p) => s + p[k], 0) / results.length);
+}
 
+function runModel(canvas) {
   return tf.tidy(() => {
-    let img = tf.expandDims(tf.browser.fromPixels(c), 0);        // 0~255
+    let img = tf.expandDims(tf.browser.fromPixels(canvas), 0);   // 0~255
     if (inputInfo.dtype === "float32") img = tf.sub(tf.div(tf.cast(img, "float32"), 127.5), 1); // 浮點模型要 -1~1
     else img = tf.cast(img, "int32");                            // 量化模型直接用 0~255
     let out = model.predict(img);
     if (!(out instanceof tf.Tensor)) out = Object.values(out)[0];
     let p = Array.from(out.dataSync());
-    if (out.dtype === "int32") p = p.map((x) => x / 255);        // 量化輸出 0~255 → 0~1
+    if (out.dtype === "int32") p = p.map((x) => x / 256);        // 量化輸出 0~255 → 0~1
     const sum = p.reduce((a, b) => a + b, 0);
     if (Math.abs(sum - 1) > 0.05) {                               // 不是機率就做 softmax
       const m = Math.max(...p), e = p.map((x) => Math.exp(x - m)), s = e.reduce((a, b) => a + b, 0);
