@@ -1,5 +1,5 @@
 {
- "說明": "全國通則依廢棄物清理法公告應回收物（收集時間由各縣市執行機關公告，見 law）；status=縣市已查證 表示該筆有該縣市環保局來源，status=全國通則（待查證）表示尚未查到該縣市特別規定。查證日期 2026-11-26。",
+ "說明": "全國通則依廢棄物清理法公告應回收物（收集時間由各縣市執行機關公告，見 law）；status=縣市已查證 表示該筆有該縣市環保局來源，status=全國通則（待查證）表示尚未查到該縣市特別規定。查證日期 2026-11-26。 2026-11-26 改為 7 個回收類別（寶特瓶、塑膠類、紙類、紙容器、鐵鋁罐、玻璃容器、電池）：原「塑膠餐盒」併入塑膠類、原「玻璃」改名玻璃容器、新增紙類（尚未查證來源）。",
  "sources": {
   "tp95": "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95",
   "tp14": "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
@@ -20,6 +20,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -30,26 +45,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -75,6 +81,20 @@
      "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=95"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：廢塑膠（立體類）",
+    "前處理": "每週二、四、六交給清潔隊回收車",
+    "status": "縣市已查證",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -85,25 +105,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：廢塑膠（立體類）",
-    "前處理": "每週二、四、六交給清潔隊回收車",
-    "status": "縣市已查證",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14"
-    ]
-   },
-   "鐵鋁罐": {
-    "丟哪裡": "資源回收：金屬容器類",
-    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -130,6 +142,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -140,26 +167,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
+   "鐵鋁罐": {
+    "丟哪裡": "資源回收：金屬容器類",
+    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
     "status": "縣市已查證",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "鐵鋁罐": {
-    "丟哪裡": "資源回收：金屬容器類",
-    "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "縣市已查證",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -186,6 +204,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -196,26 +229,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -242,6 +266,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -252,26 +291,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -298,6 +328,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -308,26 +353,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -354,6 +390,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -364,26 +415,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -410,6 +452,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -420,26 +477,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -466,6 +514,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -476,26 +539,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -522,6 +576,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -532,26 +601,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -578,6 +638,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -588,26 +663,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -634,6 +700,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -644,26 +725,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -690,6 +762,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -700,26 +787,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -746,6 +824,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -756,26 +849,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -802,6 +886,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "沖洗或擦拭後與紙類分開回收",
@@ -810,26 +909,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -854,6 +944,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -864,26 +969,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -910,6 +1006,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -920,26 +1031,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -966,6 +1068,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -976,26 +1093,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -1022,6 +1130,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -1032,26 +1155,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -1078,6 +1192,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -1088,26 +1217,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -1134,6 +1254,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -1144,26 +1279,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
@@ -1190,6 +1316,21 @@
      "https://recycle.ntpc.gov.tw/Article/Index/category15"
     ]
    },
+   "塑膠類": {
+    "丟哪裡": "資源回收：塑膠類",
+    "前處理": "倒除內容物與殘渣，沖洗或擦乾淨後交付回收（前處理為團隊建議，來源未載明）",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "紙類": {
+    "丟哪裡": "資源回收：廢紙類",
+    "前處理": "保持乾燥、不沾油污；紙箱拆平綑綁；用過的衛生紙、沾油的紙不能回收",
+    "status": "全國通則（待查證）",
+    "來源": []
+   },
    "紙容器": {
     "丟哪裡": "資源回收：紙容器類（與廢紙分開）",
     "前處理": "倒空內容物，沖洗或用紙巾擦拭油污；鋁箔包取出吸管後壓扁",
@@ -1200,26 +1341,17 @@
      "https://orgws.kcg.gov.tw/001/KcgOrgUploadFiles/325/relfile/69422/355967/298ed06a-19d8-4218-abd0-1ab4f6aef8f7.pdf"
     ]
    },
-   "玻璃": {
-    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
-    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
-   "塑膠餐盒": {
-    "丟哪裡": "資源回收：塑膠類",
-    "前處理": "交付資源回收（來源未載明前處理，網站提示「倒除殘渣」為團隊建議）",
-    "status": "全國通則（待查證）",
-    "來源": [
-     "https://dep-recycle.gov.taipei/page/recycle/index.aspx?page=14",
-     "https://recycle.ntpc.gov.tw/Article/Index/category15"
-    ]
-   },
    "鐵鋁罐": {
     "丟哪裡": "資源回收：金屬容器類",
     "前處理": "倒空內容物；噴霧等高壓罐需先到空曠處排空，單獨交付",
+    "status": "全國通則（待查證）",
+    "來源": [
+     "https://recycle.ntpc.gov.tw/Article/Index/category15"
+    ]
+   },
+   "玻璃容器": {
+    "丟哪裡": "資源回收：玻璃容器類（單獨分開回收）",
+    "前處理": "倒空內容物；容易割傷回收人員，請與其他回收物分開交付",
     "status": "全國通則（待查證）",
     "來源": [
      "https://recycle.ntpc.gov.tw/Article/Index/category15"

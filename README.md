@@ -11,7 +11,7 @@
 | `app.js` | 主程式（鏡頭、辨識、語音、回報、儀表板） |
 | `config.js` | **設定檔**：信心度門檻、類別名稱與圖示、Google 試算表網址 |
 | `model/model.tflite`、`model/labels.txt` | Teachable Machine 訓練出的模型 |
-| `data/county_rules.json` | 22 縣市 × 6 類回收規則 |
+| `data/county_rules.json` | 22 縣市 × 7 個回收類別的規則 |
 | `lib/` | TensorFlow.js 與 TFLite 函式庫（已放在網站裡，比賽現場不用連 CDN） |
 
 ## 2. 在自己電腦先試（不用上網部署）
@@ -78,7 +78,7 @@ function doGet() {
 ## 6. 常改的設定（config.js）
 
 - `THRESHOLD: 0.7`：信心度低於 70% 會請使用者換角度再拍。太常出現「看不清楚」就調低（例如 0.6），太常認錯就調高。
-- `CLASSES`：模型標籤對應的顯示名稱、圖示、縣市規則類別。目前 labels.txt 第 6 類叫「CDCD」，網站當作「電池類」。
+- `CLASSES`：8 個類別（寶特瓶、塑膠類、紙類、紙容器、鐵鋁罐、玻璃容器、電池、背景）的顯示名稱、圖示和別名。網站會用 labels.txt 的名稱自動對應，例如「乾電池」會對到「電池」、「鋁箔包」會對到「紙容器」。辨識到「背景」時會顯示「請把物品放到鏡頭前」。
 
 ## 7. 使用小技巧（demo 時）
 

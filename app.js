@@ -110,7 +110,7 @@ function loop(t = 0) {
     const p = predictFrame($("video"));
     recent.push(p); if (recent.length > 6) recent.shift();
     const top = topOf(p);
-    const info = CONFIG.CLASSES[top.label] || { name: top.label, icon: "" };
+    const info = classOf(top.label);
     $("live-label").textContent = `${info.icon} ${info.name}`;
     $("live-conf").textContent = Math.round(top.conf * 100) + "%";
   }
@@ -126,8 +126,14 @@ function snap() {
   lastResult = { ...top, probs: avg, thumb: thumbnail() };
   $("fb-ask").hidden = false; $("fb-choose").hidden = true; $("fb-thanks").hidden = true;
 
+  // 「背景」類：鏡頭前沒有東西
+  if (classOf(top.label).background) {
+    $("result").hidden = true; $("lowconf").hidden = true; $("nothing").hidden = false;
+    speak("請把物品放到鏡頭前");
+    return;
+  }
   if (top.conf < CONFIG.THRESHOLD) {
-    $("result").hidden = true; $("lowconf").hidden = false;
+    $("result").hidden = true; $("nothing").hidden = true; $("lowconf").hidden = false;
     $("lc-conf").textContent = Math.round(top.conf * 100) + "%";
     speak("看不太清楚，請換個角度再拍一次");
     return;
@@ -135,15 +141,29 @@ function snap() {
   showResult(lastResult);
 }
 
+// 用 labels.txt 的名稱找到對應的類別：先找完全相同，再找名稱裡含有的別名（越長越優先）
+function classOf(label) {
+  const L = String(label).trim().toLowerCase();
+  let best = null, bestLen = 0;
+  for (const c of CONFIG.CLASSES) {
+    for (const a of [c.key, ...c.aliases]) {
+      const A = a.toLowerCase();
+      if (L === A) return c;
+      if (L.includes(A) && A.length > bestLen) { best = c; bestLen = A.length; }
+    }
+  }
+  return best || { key: label, name: label, icon: "♻️", aliases: [] };
+}
+
 function ruleFor(label) {
-  const info = CONFIG.CLASSES[label] || { key: label, name: label, icon: "♻️" };
+  const info = classOf(label);
   const r = (rules.rules[$("county").value] || {})[info.key] || {};
   return { info, r };
 }
 
 function showResult(res) {
   const { info, r } = ruleFor(res.label);
-  $("lowconf").hidden = true; $("result").hidden = false;
+  $("lowconf").hidden = true; $("nothing").hidden = true; $("result").hidden = false;
   $("r-icon").textContent = info.icon;
   $("r-name").textContent = info.name;
   $("r-conf").textContent = `AI 信心度 ${Math.round(res.conf * 100)}%`;
@@ -208,8 +228,8 @@ function showWrongChoices() {
   $("fb-ask").hidden = true; $("fb-choose").hidden = false;
   const box = $("fb-options"); box.innerHTML = "";
   labels.forEach((l) => {
-    if (l === lastResult.label) return;
-    const info = CONFIG.CLASSES[l] || { name: l, icon: "" };
+    const info = classOf(l);
+    if (l === lastResult.label || info.background) return;
     const b = document.createElement("button");
     b.textContent = `${info.icon} ${info.name}`;
     b.onclick = () => saveReport(l);
@@ -234,7 +254,7 @@ async function loadDashboardData() {
   return { list: getReports(), local: getReports() };
 }
 
-const nameOf = (l) => (CONFIG.CLASSES[l] ? CONFIG.CLASSES[l].icon + " " + CONFIG.CLASSES[l].name : l === "其他" ? "🚮 其他" : l);
+const nameOf = (l) => (l === "其他" ? "🚮 其他" : classOf(l).icon + " " + classOf(l).name);
 
 async function renderDashboard() {
   const { list, local } = await loadDashboardData();
