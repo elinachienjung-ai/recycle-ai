@@ -56,22 +56,16 @@ const CONFIG = {
     { key: "背景",     name: "沒有物品",   icon: "👋", aliases: ["background", "無物品", "沒有東西"], background: true },
   ],
 
-  // 按「不對」時讓使用者選「這是什麼東西」，網站自動對應到類別（使用者不用知道該丟哪類）
+  // 按「不對」或「看不太清楚」時，讓使用者選正確的類別（就是 AI 原本的 8 類，加上「都不是」）
   ITEMS: [
-    { name: "寶特瓶",           icon: "🧴", key: "寶特瓶" },
-    { name: "塑膠便當盒",       icon: "🍱", key: "塑膠類" },
-    { name: "布丁盒／優格杯",   icon: "🍮", key: "塑膠類" },
-    { name: "洗髮精等塑膠瓶",   icon: "🧼", key: "塑膠類" },
-    { name: "紙箱",             icon: "📦", key: "紙類" },
-    { name: "報紙／書本",       icon: "📰", key: "紙類" },
-    { name: "鋁箔包",           icon: "🧃", key: "紙容器" },
-    { name: "牛奶紙盒",         icon: "🥛", key: "紙容器" },
-    { name: "紙便當盒",         icon: "🥡", key: "紙容器" },
-    { name: "鐵罐／鋁罐",       icon: "🥫", key: "鐵鋁罐" },
-    { name: "玻璃瓶",           icon: "🍾", key: "玻璃容器" },
-    { name: "乾電池",           icon: "🔋", key: "電池" },
-    { name: "手搖飲杯",         icon: "🧋", key: "飲料杯" },
-    { name: "咖啡杯",           icon: "☕", key: "飲料杯" },
+    { name: "寶特瓶",   icon: "🧴", key: "寶特瓶" },
+    { name: "塑膠類",   icon: "🥡", key: "塑膠類" },
+    { name: "紙類",     icon: "📦", key: "紙類" },
+    { name: "紙容器",   icon: "🧃", key: "紙容器" },
+    { name: "鐵鋁罐",   icon: "🥫", key: "鐵鋁罐" },
+    { name: "玻璃容器", icon: "🍾", key: "玻璃容器" },
+    { name: "電池",     icon: "🔋", key: "電池" },
+    { name: "飲料杯",   icon: "🥤", key: "飲料杯" },
     { name: "都不是（一般垃圾／其他）", icon: "🚮", key: "其他" },
   ],
 };
