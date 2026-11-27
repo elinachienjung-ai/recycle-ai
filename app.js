@@ -145,7 +145,7 @@ function loop(t = 0) {
     lastTick = t;
     const { probs: p, source } = predictFrame($("video"));
     recent.push(p); recentSrc.push(source);
-    if (recent.length > 6) { recent.shift(); recentSrc.shift(); }
+    if (recent.length > 3) { recent.shift(); recentSrc.shift(); }
     const top = topOf(p);
     const info = classOf(top.label);
     $("live-label").textContent = `${source === "memory" ? "🧠" : ""}${info.icon} ${info.name}`;
@@ -157,7 +157,7 @@ function loop(t = 0) {
 // ---------- 4. 拍一下 ----------
 function snap() {
   if (!recent.length) return;
-  // 平均最近 6 次結果，比只看一張穩定
+  // 平均最近 3 次結果（約 0.75 秒），比只看一張穩定，也比較接近畫面左下即時顯示的數字
   const avg = recent[0].map((_, k) => recent.reduce((s, p) => s + p[k], 0) / recent.length);
   const top = topOf(avg);
   // 答案來源：最近幾次多數來自哪裡

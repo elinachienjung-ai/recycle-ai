@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>一拍就知道</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261127b">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♻️</text></svg>">
 </head>
 <body>
@@ -179,8 +180,17 @@
   <script src="lib/tf-backend-webgl.min.js"></script>
   <script src="lib/tf-layers.min.js"></script>
   <script src="lib/tf-tflite.min.js"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
-  <script src="retrain.js"></script>
+  <!-- 網站自己的程式加上「每分鐘換一次」的版本號，更新後瀏覽器不會一直用舊的（GitHub Pages 會快取 10 分鐘） -->
+  <script>
+    (function () {
+      var v = Math.floor(Date.now() / 60000), files = ["config.js", "app.js", "retrain.js"];
+      (function next(i) {
+        if (i >= files.length) return;
+        var s = document.createElement("script");
+        s.src = files[i] + "?v=" + v; s.onload = function () { next(i + 1); };
+        document.body.appendChild(s);
+      })(0);
+    })();
+  </script>
 </body>
 </html>
