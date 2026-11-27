@@ -150,19 +150,19 @@
         <p id="rt-feat-msg" class="muted"></p>
       </div>
 
-      <h2>審核區（確認後才會拿去重新訓練）</h2>
+      <h2>審核區（按「確認」後，網站會自動學會）</h2>
       <p class="muted">這裡有兩種照片：使用者按「不對」回報的，以及 AI 沒把握時自動存下來的。由團隊或老師確認正確類別，避免錯的標籤混進訓練資料。</p>
       <p id="rv-count" class="muted"></p>
       <p id="rv-code-row" class="rv-code-row" hidden><label>審核碼 <input id="rv-code" type="password" placeholder="團隊設定的審核碼"></label> <span id="rv-msg" class="rv-msg"></span></p>
       <div id="review" class="review"></div>
 
-      <h2>已審核的照片（重新訓練用）</h2>
-      <p class="muted">按「下載重訓照片 ZIP」會得到每個類別一個資料夾，直接上傳到 Teachable Machine 對應的類別重新訓練。</p>
+      <h2>已審核的照片</h2>
+      <p class="muted">✅ 這些照片<b>不用自己拿去訓練</b>：按「確認」後，網站已經自動學會了（放進自學記憶，並自動重新訓練，見上面「🧠 AI 自學」）。<br>下面的 ZIP 只是選用的備份；如果之後想在 Teachable Machine 重新做一版模型，才會用到。</p>
       <p id="folder-link" class="muted" hidden></p>
       <div id="gallery"></div>
 
       <div class="actions">
-        <button id="btn-zip" class="primary">📦 下載已審核重訓照片 ZIP</button>
+        <button id="btn-zip" class="ghost">📦 備份已審核照片 ZIP（選用）</button>
         <button id="btn-csv" class="ghost">⬇️ 下載回報紀錄 CSV</button>
         <button id="btn-demo" class="ghost">🧪 顯示示範資料（簡報用）</button>
         <button id="btn-clear" class="ghost danger">🗑 清除這台裝置的紀錄</button>
