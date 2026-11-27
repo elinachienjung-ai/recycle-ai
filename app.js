@@ -404,7 +404,7 @@ function showWrongChoices(boxId = "fb-options") {
 // 規則：看「AI 猜成這一類」時被使用者說不對的比例（認錯率）
 //   回報少於 minReports 筆 → 用預設門檻
 //   否則 門檻 = 預設 + 0.5 ×（認錯率 − 10%），並限制在 min～max 之間
-//   例：認錯率 10% → 70%；30% → 80%；50% → 90%；0% → 65%
+//   例：認錯率 10% → 50%；30% → 60%；50% → 70%；0% → 50%（最低 50%）
 let thresholds = {};
 function thresholdFor(key) { return thresholds[key]?.value ?? CONFIG.THRESHOLD; }
 async function computeThresholds() {
