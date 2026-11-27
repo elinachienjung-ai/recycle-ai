@@ -22,7 +22,7 @@ const CONFIG = {
   // Google 試算表回報網址（Apps Script 部署後的網址，以 /exec 結尾）
   // 填了之後，所有使用者的回報、辨識紀錄、認錯照片都會存到同一份試算表和雲端硬碟。
   // 空字串 = 只存在這台裝置的瀏覽器（localStorage）。設定方法見 README.md 第 4 節。
-  SHEET_URL: "https://script.google.com/macros/s/AKfycbyxAAdFEIyiB_iZaEin6W-NgXFW0J8U-q163ZVgH8SFvKKZz0MwxUEjNT1WGh4edHyl/exec",
+  SHEET_URL: "https://script.google.com/macros/s/AKfycbzjARxhwArth538-QCu39GSYyJd04gdJoqvWve3tP-Y4t3im_r_IT5wGZxQkQXxfiwNoQ/exec",
 
   // 回報或可疑樣本的小照片（160×160）是否送到雲端（給團隊審核、重新訓練）
   UPLOAD_PHOTOS: true,
