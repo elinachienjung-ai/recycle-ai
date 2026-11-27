@@ -40,12 +40,15 @@
 
       <div id="result" class="result" hidden>
         <div class="result-head">
+          <img id="r-photo" class="r-photo" alt="定格畫面">
           <span id="r-icon" class="r-icon"></span>
-          <div>
+          <div class="r-main">
             <div id="r-name" class="r-name"></div>
             <div id="r-conf" class="r-conf"></div>
+            <div class="r-meter"><div id="r-bar" class="r-bar"></div></div>
           </div>
         </div>
+        <div id="r-from" class="r-from" hidden></div>
         <div class="r-row"><b>丟哪裡</b><span id="r-where"></span></div>
         <div class="r-row"><b>先這樣做</b><span id="r-prep"></span></div>
         <div id="r-source" class="r-source"></div>
@@ -69,6 +72,9 @@
       <div id="lowconf" class="lowconf" hidden>
         🤔 看不太清楚（信心度 <span id="lc-conf"></span>，這類需要 <span id="lc-need"></span>）<br>請換個角度、靠近一點、背景單純一點，再拍一次。
         <div class="privacy" id="lc-note">📷 這張畫面會存成小照片給團隊審核，用來讓 AI 變更準。</div>
+        <button id="btn-teach" class="ghost teach">🧠 告訴 AI 這是什麼（馬上學會）</button>
+        <div id="lc-options" class="fb-options" hidden></div>
+        <div id="lc-thanks" class="thanks" hidden></div>
       </div>
     </section>
 
@@ -125,6 +131,24 @@
         <tbody id="thr-table"></tbody>
       </table>
 
+      <h2>🧠 AI 自學（即時記憶＋自動重訓）</h2>
+      <div id="rt-box" class="rt-box">
+        <p class="muted">兩層學習，都在瀏覽器裡完成，不需要伺服器：<br>
+          ① <b>即時自學記憶</b>：使用者按「❌ 不對」並選正確物品，網站把定格的 3 張畫面記起來，同一個東西再拍就會答對（只在這台裝置）。<br>
+          ② <b>自動重訓</b>：團隊在下面審核區「確認」的照片，會和原本的訓練照片一起重新訓練 AI 的最後一層，所有裝置打開網站都會學到。</p>
+        <p><label>辨識時使用
+          <select id="rt-use"><option value="auto">自學記憶＋重訓模型（建議）</option><option value="off">只用原本的模型（比較用）</option></select></label></p>
+        <p id="rt-status" class="rt-status"></p>
+        <div id="rt-memory"></div>
+        <div id="rt-detail"></div>
+        <div class="actions">
+          <button id="rt-now" class="ghost">🔁 立即重新訓練</button>
+          <button id="rt-clear" class="ghost danger">🗑 清除這台裝置的自學記憶</button>
+          <label class="ghost file-btn">📂 換訓練照片（選 Teachable Machine 專案檔 .tm）<input id="rt-feat" type="file" accept=".tm,.zip" hidden></label>
+        </div>
+        <p id="rt-feat-msg" class="muted"></p>
+      </div>
+
       <h2>審核區（確認後才會拿去重新訓練）</h2>
       <p class="muted">這裡有兩種照片：使用者按「不對」回報的，以及 AI 沒把握時自動存下來的。由團隊或老師確認正確類別，避免錯的標籤混進訓練資料。</p>
       <p id="rv-count" class="muted"></p>
@@ -157,5 +181,6 @@
   <script src="lib/tf-tflite.min.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script src="retrain.js"></script>
 </body>
 </html>

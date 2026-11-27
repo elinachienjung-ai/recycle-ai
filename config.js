@@ -16,6 +16,17 @@ const CONFIG = {
   // 也可以貼 Teachable Machine「上傳模型」後的分享連結，例如 "https://teachablemachine.withgoogle.com/models/xxxxxx/"
   MODEL_URL: "",
 
+  // 🧠 即時自學記憶（KNN）：使用者按「不對」並選正確物品 → 記住定格的 3 張畫面，同一個東西再拍就答對
+  //   k：跟最像的幾張比；minSimilarity：相似度要多高才算「很像」（0～1，用我們 1174 張訓練照片測過：
+  //   不同類別的照片 95% 都低於 0.80，所以設 0.85 比較不會亂認）；minMatches：至少幾張夠像
+  //   minConf：夠像的照片裡同一類要占多少（0.75 = 75%）才採用記憶的答案，否則用原本的模型
+  //   useConfirmed：團隊審核確認過的照片也放進記憶（所有裝置共享）
+  MEMORY: { enabled: true, frames: 3, k: 3, minSimilarity: 0.85, minMatches: 2, minConf: 0.75, max: 600, useConfirmed: true },
+
+  // 🔁 自動重訓：用「原訓練照片＋審核確認的回報照片」重新訓練 AI 的最後一層（在瀏覽器裡，約幾秒）
+  //   minPhotos：確認的照片至少幾張才重訓；feedbackWeight：回報照片一張當幾張用（真實環境拍的比較重要）
+  RETRAIN: { enabled: true, minPhotos: 5, feedbackWeight: 3, epochs: 20, learningRate: 0.001 },
+
   // 預設縣市
   DEFAULT_COUNTY: "臺北市",
 
