@@ -4,7 +4,8 @@ const CONFIG = {
   THRESHOLD: 0.5,
 
   // 自動校準信心門檻：依「AI 猜成這類時被說不對的比例」調整每一類的門檻
-  AUTO_THRESHOLD: { enabled: true, minReports: 10, min: 0.5, max: 0.9 },
+  // 目前關閉（enabled: false）＝每一類都用 THRESHOLD（50%）；改成 true 就會讓常認錯的類別自動提高門檻
+  AUTO_THRESHOLD: { enabled: false, minReports: 10, min: 0.5, max: 0.9 },
 
   // AI 沒把握時，自動把那張小照片存成「可疑樣本」，給團隊審核後重新訓練
   SAVE_SUSPECTS: true,

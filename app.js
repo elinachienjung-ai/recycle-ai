@@ -548,7 +548,7 @@ async function renderDashboard() {
   $("thr-table").innerHTML = keys.map((k) => {
     const t = thr[k] || { n: 0, rate: 0, value: CONFIG.THRESHOLD, auto: false };
     return `<tr><td>${nameOf(k)}</td><td>${t.n}</td><td>${t.n ? Math.round(t.rate * 100) + "%" : "－"}</td>
-      <td><b>${Math.round(t.value * 100)}%</b></td><td class="muted">${t.auto ? (t.value > CONFIG.THRESHOLD ? "常認錯，提高門檻" : t.value < CONFIG.THRESHOLD ? "很少認錯，稍微放寬" : "維持") : `資料不足（少於 ${CONFIG.AUTO_THRESHOLD.minReports} 筆），用預設`}</td></tr>`;
+      <td><b>${Math.round(t.value * 100)}%</b></td><td class="muted">${t.auto ? (t.value > CONFIG.THRESHOLD ? "常認錯，提高門檻" : t.value < CONFIG.THRESHOLD ? "很少認錯，稍微放寬" : "維持") : (CONFIG.AUTO_THRESHOLD.enabled ? `資料不足（少於 ${CONFIG.AUTO_THRESHOLD.minReports} 筆），用預設` : "自動校準已關閉，用預設")}</td></tr>`;
   }).join("");
 
   // 7. 審核區：確認標籤後才會進重訓資料
