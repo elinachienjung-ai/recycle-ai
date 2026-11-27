@@ -386,7 +386,7 @@ function saveReport(correctKey, item = "") {
   computeThresholds();
 }
 
-// 「不對」：使用者不一定知道該丟哪類，但知道「這是什麼東西」→ 選物品圖示，網站自動對應類別
+// 「不對」：讓使用者點正確的類別（config.js 的 ITEMS）
 function showWrongChoices(boxId = "fb-options") {
   $("fb-ask").hidden = true; $("fb-choose").hidden = false;
   $("privacy-note").hidden = !(CONFIG.SHEET_URL && CONFIG.UPLOAD_PHOTOS);
