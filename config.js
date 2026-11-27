@@ -1,10 +1,10 @@
 // ===== 網站設定檔：要改設定，改這個檔案就好 =====
 const CONFIG = {
-  // 信心度門檻：AI 最高的機率低於這個數字，就請使用者換角度再拍（0.7 = 70%）
-  THRESHOLD: 0.7,
+  // 信心度門檻：AI 最高的機率低於這個數字，就請使用者換角度再拍（0.5 = 50%，過半就顯示答案）
+  THRESHOLD: 0.5,
 
   // 自動校準信心門檻：依「AI 猜成這類時被說不對的比例」調整每一類的門檻
-  AUTO_THRESHOLD: { enabled: true, minReports: 10, min: 0.6, max: 0.95 },
+  AUTO_THRESHOLD: { enabled: true, minReports: 10, min: 0.5, max: 0.9 },
 
   // AI 沒把握時，自動把那張小照片存成「可疑樣本」，給團隊審核後重新訓練
   SAVE_SUSPECTS: true,
