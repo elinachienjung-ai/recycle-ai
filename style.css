@@ -144,3 +144,5 @@ footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px
 .rt-status { font-weight: 700; }
 .rt-warn { color: var(--bad); }
 .file-btn { cursor: pointer; display: inline-flex; align-items: center; }
+.cls-icon { vertical-align: -0.2em; display: inline-block; }
+.r-icon .cls-icon, .item-icon .cls-icon { vertical-align: middle; }
