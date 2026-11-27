@@ -65,7 +65,13 @@ function rows_(name) {
 }
 
 // 儀表板讀資料：只有「待審核」的樣本會附照片（最多 60 張）
-function doGet() {
+// 網址加 ?type=train：給網站「AI 自學」用，回傳審核確認過的照片（最新 400 張）
+function doGet(e) {
+  if (e && e.parameter && e.parameter.type === "train") {
+    const train = rows_("樣本").filter((s) => s.status === "已確認" && s.photo && s.label && s.label !== "其他")
+      .slice(-400).map((s) => ({ id: s.id, label: s.label, photo: s.photo }));
+    return ContentService.createTextOutput(JSON.stringify({ train: train })).setMimeType(ContentService.MimeType.JSON);
+  }
   let withPhoto = 0;
   const samples = rows_("樣本").reverse().map((s) => {
     if (s.status !== "待審核" || ++withPhoto > 60) s.photo = "";

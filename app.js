@@ -12,6 +12,7 @@ let lastResult = null;     // 最近一次「拍一下」的結果（回報用�
 let inputInfo = null;      // 模型輸入格式
 let cupRules = null;       // 手搖飲拆解規則
 let modelFormat = "";      // 模型格式
+let recentSrc = [];        // 最近幾次的答案來源：model 原模型／retrained 重訓模型／memory 自學記憶
 
 // ---------- 1. 載入模型、標籤、縣市規則 ----------
 async function init() {
@@ -57,6 +58,7 @@ async function init() {
   $("status").textContent = "模型準備好了！按「開啟鏡頭」開始";
   window.__ready = true;
   computeThresholds();
+  rtStart();   // 自學記憶＋整體重訓（retrain.js），在背景載入，不會擋住辨識
 }
 
 // ---------- 2. 鏡頭 ----------
@@ -94,13 +96,21 @@ function predictFrame(source) {
   const sw = source.videoWidth || source.width, sh = source.videoHeight || source.height;
   const side = Math.min(sw, sh);
   const results = [];
+  let memory = null;
+  const embed = rtNeedEmbed();   // 有自學記憶或重訓模型時，才需要 MobileNet 特徵（retrain.js）
   for (const flip of CONFIG.FLIP_AVERAGE ? [false, true] : [false]) {
     ctx.setTransform(flip ? -1 : 1, 0, 0, 1, flip ? w : 0, 0);
     ctx.drawImage(source, (sw - side) / 2, (sh - side) / 2, side, side, 0, 0, w, h);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    results.push(runModel(c));
+    if (embed) {
+      const t = rtEmbed(c), vec = t.dataSync(); t.dispose();
+      if (!flip) memory = rtRecall(vec);                       // 先問「自學記憶」
+      results.push(rtActive() ? rtPredict(vec) : runModel(c));  // 有重訓模型就用重訓模型
+    } else results.push(runModel(c));
   }
-  return results[0].map((_, k) => results.reduce((s, p) => s + p[k], 0) / results.length);
+  // 自學記憶有把握（≥ 75%）→ 直接用記憶的答案；否則用模型
+  if (memory && memory.conf >= CONFIG.MEMORY.minConf) return { probs: memory.probs, source: "memory" };
+  return { probs: results[0].map((_, k) => results.reduce((s, p) => s + p[k], 0) / results.length), source: rtActive() ? "retrained" : "model" };
 }
 
 function runModel(canvas) {
@@ -133,11 +143,12 @@ function loop(t = 0) {
   if (!stream) return;
   if (t - lastTick > 250 && $("video").readyState >= 2) {
     lastTick = t;
-    const p = predictFrame($("video"));
-    recent.push(p); if (recent.length > 6) recent.shift();
+    const { probs: p, source } = predictFrame($("video"));
+    recent.push(p); recentSrc.push(source);
+    if (recent.length > 6) { recent.shift(); recentSrc.shift(); }
     const top = topOf(p);
     const info = classOf(top.label);
-    $("live-label").textContent = `${info.icon} ${info.name}`;
+    $("live-label").textContent = `${source === "memory" ? "🧠" : ""}${info.icon} ${info.name}`;
     $("live-conf").textContent = Math.round(top.conf * 100) + "%";
   }
   requestAnimationFrame(loop);
@@ -149,7 +160,13 @@ function snap() {
   // 平均最近 6 次結果，比只看一張穩定
   const avg = recent[0].map((_, k) => recent.reduce((s, p) => s + p[k], 0) / recent.length);
   const top = topOf(avg);
-  lastResult = { ...top, probs: avg, thumb: thumbnail() };
+  // 答案來源：最近幾次多數來自哪裡
+  const cnt = {}; recentSrc.forEach((x) => (cnt[x] = (cnt[x] || 0) + 1));
+  const source = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a])[0] || "model";
+  lastResult = { ...top, probs: avg, thumb: thumbnail(), source, frames: null };
+  // 定格：連拍 3 張留著，使用者按「不對」時拿來教 AI（自學記憶）
+  const me = lastResult;
+  rtGrabFrames().then((f) => (me.frames = f)).catch(() => {});
   $("fb-ask").hidden = false; $("fb-choose").hidden = true; $("fb-thanks").hidden = true;
 
   // 「背景」類：鏡頭前沒有東西
@@ -162,6 +179,8 @@ function snap() {
   // 每一類的門檻不一樣：常被認錯的類別，要更有把握才回答（自動校準）
   const thr = thresholdFor(classOf(top.label).key);
   if (top.conf < thr) {
+    lastResult.lowconf = true;
+    $("btn-teach").hidden = !CONFIG.MEMORY.enabled; $("lc-options").hidden = true; $("lc-thanks").hidden = true;
     $("result").hidden = true; $("nothing").hidden = true; $("lowconf").hidden = false;
     $("lc-conf").textContent = Math.round(top.conf * 100) + "%";
     $("lc-need").textContent = Math.round(thr * 100) + "%";
@@ -200,7 +219,12 @@ function showResult(res) {
   $("lowconf").hidden = true; $("nothing").hidden = true; $("result").hidden = false;
   $("r-icon").textContent = info.icon;
   $("r-name").textContent = info.name;
-  $("r-conf").textContent = `AI 信心度 ${Math.round(res.conf * 100)}%`;
+  const pctv = Math.round(res.conf * 100);
+  $("r-conf").textContent = `AI 信心度 ${pctv}%`;
+  $("r-bar").style.width = pctv + "%";
+  $("r-photo").src = res.thumb;
+  const from = { memory: "🧠 自學記憶：跟之前被糾正過的照片很像", retrained: "🔁 重訓模型（加入審核過的回報照片）", model: "" }[res.source || "model"];
+  $("r-from").textContent = from; $("r-from").hidden = !from;
   $("r-where").textContent = r["丟哪裡"] || "（查無規則）";
   $("r-prep").textContent = r["前處理"] || "－";
   const src = (r["來源"] || []).map((u, i) => `<a href="${u}" target="_blank" rel="noopener">來源${i + 1}</a>`).join("、");
@@ -343,17 +367,30 @@ function saveReport(correctKey, item = "") {
   };
   const all = getReports(); all.push(rec); store("reports", all.slice(-5000));
   sendToCloud({ type: "report", ...rec });
-  if (!rec.isCorrect) saveSample("回報", { reported: correctKey, item });
-  $("fb-ask").hidden = true; $("fb-choose").hidden = true; $("fb-thanks").hidden = false;
-  $("fb-thanks").textContent = rec.isCorrect ? "謝謝確認！" : "謝謝回報！團隊審核後，這張照片會用來重新訓練 AI。";
+  const teach = pred.lowconf;   // 從「看不太清楚」那裡教 AI 的
+  if (!rec.isCorrect && !teach) saveSample("回報", { reported: correctKey, item });
+  const T = teach ? $("lc-thanks") : $("fb-thanks");
+  $("fb-ask").hidden = true; $("fb-choose").hidden = true; $("lc-options").hidden = true; $("btn-teach").hidden = true;
+  T.hidden = false;
+  T.textContent = rec.isCorrect && !teach ? "謝謝確認！" : "謝謝回報！團隊審核後，這張照片會用來重新訓練 AI。";
+  // 自學記憶：馬上學會（「其他」不在 AI 的類別裡，不學）
+  if ((!rec.isCorrect || teach) && CONFIG.MEMORY.enabled && correctKey !== "其他") {
+    const t0 = performance.now();
+    const frames = pred.frames;
+    rtRemember(frames, correctKey).then((n) => {
+      if (!n) return;
+      recent = []; recentSrc = [];
+      T.textContent = `🧠 學會了！（${n} 張畫面，${Math.round(performance.now() - t0)} 毫秒）同一個東西再拍一次試試看。團隊審核後，所有人的網站也會學到。`;
+    }).catch((e) => console.warn("自學失敗", e));
+  }
   computeThresholds();
 }
 
 // 「不對」：使用者不一定知道該丟哪類，但知道「這是什麼東西」→ 選物品圖示，網站自動對應類別
-function showWrongChoices() {
+function showWrongChoices(boxId = "fb-options") {
   $("fb-ask").hidden = true; $("fb-choose").hidden = false;
   $("privacy-note").hidden = !(CONFIG.SHEET_URL && CONFIG.UPLOAD_PHOTOS);
-  const box = $("fb-options"); box.innerHTML = "";
+  const box = $(boxId); box.innerHTML = ""; box.hidden = false;
   CONFIG.ITEMS.forEach((it) => {
     const b = document.createElement("button");
     b.className = "item-btn";
@@ -516,6 +553,7 @@ async function renderDashboard() {
 
   // 7. 審核區：確認標籤後才會進重訓資料
   renderReview(data.samples, data.cloud);
+  renderRetrain();
 }
 
 // 審核區
@@ -563,6 +601,7 @@ function reviewSample(id, status, label, cloud) {
     sendToCloud({ type: "review", id, status, label, code });
     if (cloudCache) { const c = cloudCache.samples.find((x) => x.id === id); if (c) { c.status = status; c.label = label; } }
   }
+  if (status === "已確認") rtSchedule();   // 有新確認的照片 → 自動重新訓練
   renderReview(cloud ? cloudCache.samples : getSamples(), cloud);
 }
 function alertBox(msg) { $("rv-msg").textContent = msg; setTimeout(() => ($("rv-msg").textContent = ""), 3000); }
@@ -632,9 +671,10 @@ function makeZip(files) {
 // ---------- 8. 按鈕 ----------
 $("btn-start").onclick = startCamera;
 $("btn-snap").onclick = snap;
-$("btn-flip").onclick = () => { facing = facing === "environment" ? "user" : "environment"; recent = []; startCamera(); };
+$("btn-flip").onclick = () => { facing = facing === "environment" ? "user" : "environment"; recent = []; recentSrc = []; startCamera(); };
 $("btn-right").onclick = () => saveReport(classOf(lastResult.label).key);
-$("btn-wrong").onclick = showWrongChoices;
+$("btn-wrong").onclick = () => showWrongChoices();
+$("btn-teach").onclick = () => { $("btn-teach").hidden = true; showWrongChoices("lc-options"); };
 $("btn-csv").onclick = downloadCSV;
 $("btn-zip").onclick = downloadZip;
 $("btn-demo").onclick = () => { demoMode = !demoMode; renderDashboard(); };
