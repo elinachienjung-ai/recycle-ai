@@ -148,7 +148,7 @@ function loop(t = 0) {
     if (recent.length > 3) { recent.shift(); recentSrc.shift(); }
     const top = topOf(p);
     const info = classOf(top.label);
-    $("live-label").textContent = `${source === "memory" ? "🧠" : ""}${info.icon} ${info.name}`;
+    $("live-label").innerHTML = `${source === "memory" ? "🧠" : ""}${iconOf(info.key)} ${info.name}`;
     $("live-conf").textContent = Math.round(top.conf * 100) + "%";
   }
   requestAnimationFrame(loop);
@@ -217,7 +217,7 @@ function ruleFor(label) {
 function showResult(res) {
   const { info, r } = ruleFor(res.label);
   $("lowconf").hidden = true; $("nothing").hidden = true; $("result").hidden = false;
-  $("r-icon").textContent = info.icon;
+  $("r-icon").innerHTML = iconOf(info.key, "56px");
   $("r-name").textContent = info.name;
   const pctv = Math.round(res.conf * 100);
   $("r-conf").textContent = `AI 信心度 ${pctv}%`;
@@ -394,7 +394,7 @@ function showWrongChoices(boxId = "fb-options") {
   CONFIG.ITEMS.forEach((it) => {
     const b = document.createElement("button");
     b.className = "item-btn";
-    b.innerHTML = `<span class="item-icon">${it.icon}</span><span>${it.name}</span>`;
+    b.innerHTML = `<span class="item-icon">${iconOf(it.key, "36px")}</span><span>${it.name}</span>`;
     b.onclick = () => saveReport(it.key, it.name);
     box.appendChild(b);
   });
@@ -429,7 +429,8 @@ async function computeThresholds() {
 
 // ---------- 7. 後台儀表板 ----------
 const isTrue = (v) => v === true || v === "TRUE" || v === "true";
-const nameOf = (k) => (k === "其他" ? "🚮 其他" : classOf(k).icon + " " + classOf(k).name);
+const nameOf = (k) => iconOf(k) + " " + (k === "其他" ? "其他" : classOf(k).name);   // 有圖示（放進 innerHTML）
+const nameText = (k) => (k === "其他" ? "其他" : classOf(k).name);                      // 純文字（提示框用）
 const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "－");
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -505,7 +506,7 @@ async function renderDashboard() {
     return { k, n: of.length, good };
   }).filter((r) => r.n > 0).sort((a, b) => a.good / a.n - b.good / b.n);
   $("chart-acc").innerHTML = acc.length
-    ? barRows(acc.map((r) => ({ label: nameOf(r.k), value: Math.round((r.good / r.n) * 100), text: Math.round((r.good / r.n) * 100), tip: `${nameOf(r.k)}：${r.n} 筆回報中 ${r.good} 筆正確` })), "%")
+    ? barRows(acc.map((r) => ({ label: nameOf(r.k), value: Math.round((r.good / r.n) * 100), text: Math.round((r.good / r.n) * 100), tip: `${nameText(r.k)}：${r.n} 筆回報中 ${r.good} 筆正確` })), "%")
     : `<p class="muted">還沒有回報。辨識後按「✅ 對」或「❌ 不對」就會統計。</p>`;
 
   // 2. 最常被認錯的物品
@@ -513,7 +514,7 @@ async function renderDashboard() {
   wrong.forEach((r) => (byClass[r.correct] = (byClass[r.correct] || 0) + 1));
   const rows = Object.entries(byClass).sort((a, b) => b[1] - a[1]);
   $("chart").innerHTML = rows.length
-    ? barRows(rows.map(([k, n]) => ({ label: nameOf(k), value: n, tip: `${nameOf(k)}：被認錯 ${n} 次` })), "")
+    ? barRows(rows.map(([k, n]) => ({ label: nameOf(k), value: n, tip: `${nameText(k)}：被認錯 ${n} 次` })), "")
     : `<p class="muted">還沒有「不對」的回報。</p>`;
 
   // 3. 混淆矩陣：橫列＝其實是，直欄＝AI 認成
@@ -521,7 +522,7 @@ async function renderDashboard() {
   const m = {}; let mmax = 0;
   list.forEach((r) => { const k = r.correct + "|" + r.predicted; m[k] = (m[k] || 0) + 1; });
   rowsK.forEach((a) => cols.forEach((b) => { if (a !== b) mmax = Math.max(mmax, m[a + "|" + b] || 0); }));
-  const head = `<tr><th class="mx-corner">其實是 ↓ ／ AI 認成 →</th>${cols.map((b) => `<th title="${classOf(b).name}">${classOf(b).icon}<span class="mx-name">${classOf(b).name}</span></th>`).join("")}</tr>`;
+  const head = `<tr><th class="mx-corner">其實是 ↓ ／ AI 認成 →</th>${cols.map((b) => `<th title="${classOf(b).name}">${iconOf(b)}<span class="mx-name">${classOf(b).name}</span></th>`).join("")}</tr>`;
   const body = rowsK.filter((a) => a !== "其他" || cols.some((b) => m[a + "|" + b])).map((a) => `<tr><th>${nameOf(a)}</th>${cols.map((b) => {
     const n = m[a + "|" + b] || 0, diag = a === b;
     const alpha = diag || !n ? 0 : 0.18 + 0.82 * (n / Math.max(1, mmax));
@@ -562,8 +563,8 @@ function renderReview(samples, cloud) {
   const confirmed = samples.filter((x) => x.status === "已確認");
   $("rv-count").textContent = `待審核 ${pending.length} 張・已確認 ${confirmed.length} 張`;
   $("rv-code-row").hidden = !cloud;
-  const opts = (sel) => CONFIG.CLASSES.map((c) => `<option value="${c.key}" ${c.key === sel ? "selected" : ""}>${c.icon} ${c.name}</option>`).join("") +
-    `<option value="其他" ${sel === "其他" ? "selected" : ""}>🚮 其他（不用來訓練）</option>`;
+  const opts = (sel) => CONFIG.CLASSES.map((c) => `<option value="${c.key}" ${c.key === sel ? "selected" : ""}>${c.name}</option>`).join("") +
+    `<option value="其他" ${sel === "其他" ? "selected" : ""}>其他（不用來訓練）</option>`;
   $("review").innerHTML = pending.slice(0, 40).map((x) => `<div class="rv-card" data-id="${esc(x.id)}">
       <img src="${esc(x.photo)}" alt="">
       <div class="rv-info">
